@@ -1060,12 +1060,14 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .indic-legend-label { font-size: 9px; color: var(--muted); font-family: 'Poppins', sans-serif; }
 
 /* ===== TRUST ===== */
-.meta-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 40px; }
-.meta-left { display: flex; flex-direction: column; align-items: flex-start; gap: 0; }
+.meta-section { overflow: hidden; padding-bottom: 0 !important; }
+.meta-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; margin-top: 40px; }
+.meta-left { display: flex; flex-direction: column; align-items: flex-start; gap: 0; padding-bottom: 96px; }
 .meta-left h2 { margin-top: 6px; }
 .meta-left .sub { margin-top: 12px; margin-bottom: 28px; }
-.meta-right img { width: 100%; display: block; }
-@media(max-width: 780px) { .meta-layout { grid-template-columns: 1fr; gap: 32px; } }
+.meta-right { align-self: end; }
+.meta-right img { width: 100%; display: block; vertical-align: bottom; }
+@media(max-width: 780px) { .meta-layout { grid-template-columns: 1fr; gap: 32px; } .meta-left { padding-bottom: 0; } }
 .trust-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-top: 36px; }
 .trust-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
 .trust-badge {
@@ -2135,7 +2137,7 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 <div class="section-divider"></div>
 
 <!-- ===== API OFICIAL ===== -->
-<section class="section paper">
+<section class="section paper meta-section">
   <div class="section-inner">
     <div class="meta-layout reveal">
       <div class="meta-left">
