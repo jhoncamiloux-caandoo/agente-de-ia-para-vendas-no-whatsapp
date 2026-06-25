@@ -199,7 +199,8 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .dark .btn-secondary { color: var(--white); border-color: rgba(255,255,255,.25); }
 .dark .btn-secondary:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.5); }
 
-.btn-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 32px; }
+.btn-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 16px; margin-top: 32px; }
+@media(max-width: 520px) { .btn-row { flex-wrap: wrap; } }
 .btn-cap { font-size: 12.5px; color: var(--muted); max-width: 180px; line-height: 1.35; }
 .dark .btn-cap { color: rgba(255,255,255,.5); }
 
