@@ -1,0 +1,8 @@
+# macOS metadata
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Claude session data
+.claude/
