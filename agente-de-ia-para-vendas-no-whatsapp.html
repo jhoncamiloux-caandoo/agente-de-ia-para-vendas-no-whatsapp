@@ -823,47 +823,104 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
   border-color: var(--purple);
   box-shadow: 0 4px 14px rgba(142,124,255,.28);
 }
+/* ===== SEGMENT PANELS — new 2-col image layout ===== */
 .segment-panel {
   margin-top: 24px; background: var(--white); border: 1px solid var(--line);
-  border-radius: var(--r-card); padding: 32px 36px; display: none;
-  box-shadow: var(--shadow-card);
-  flex-direction: row; align-items: center; gap: 32px;
+  border-radius: var(--r-card); display: none;
+  box-shadow: var(--shadow-card); overflow: hidden;
+  grid-template-columns: 1fr 1fr;
 }
-.segment-panel.active { display: flex; animation: panel-in .3s ease; }
+.segment-panel.active { display: grid; animation: panel-in .3s ease; }
 @keyframes panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-.segment-panel-content { flex: 1; min-width: 0; }
-.segment-tag { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--purple); font-weight: 600; margin-bottom: 8px; }
-.segment-h { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 21px; color: var(--ink); margin-bottom: 12px; letter-spacing: -0.01em; }
-.segment-p { font-size: 15px; color: var(--ink-2); line-height: 1.6; }
 
-/* Segment play button */
-.segment-play-btn {
-  flex-shrink: 0; display: flex; flex-direction: column; align-items: center;
-  gap: 10px; background: none; border: none; cursor: pointer; padding: 0;
+/* Left side */
+.segment-panel-left {
+  padding: 36px 40px; display: flex; flex-direction: column;
+  justify-content: space-between; gap: 28px;
 }
-.segment-play-circle {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: #e02020;
+.segment-panel-top {}
+.segment-tag { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--purple); font-weight: 600; margin-bottom: 10px; }
+.segment-h { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 28px; color: var(--ink); margin-bottom: 12px; letter-spacing: -0.02em; line-height: 1.15; }
+.segment-p { font-size: 15px; color: var(--ink-2); line-height: 1.65; }
+
+/* Feature chips */
+.segment-chips { display: flex; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--paper); }
+.segment-chip { flex: 1; display: flex; align-items: center; gap: 10px; padding: 13px 14px; border-right: 1px solid var(--line); }
+.segment-chip:last-child { border-right: none; }
+.segment-chip-icon {
+  width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+  background: var(--purple-soft); color: var(--purple);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 6px 22px rgba(224,32,32,.38);
-  transition: transform .22s ease, box-shadow .22s ease;
 }
-.segment-play-btn:hover .segment-play-circle {
-  transform: scale(1.1);
-  box-shadow: 0 10px 32px rgba(224,32,32,.5);
+.segment-chip-icon svg { width: 15px; height: 15px; }
+.segment-chip-title { font-size: 12px; font-weight: 700; color: var(--ink); font-family: 'Poppins', sans-serif; line-height: 1.2; }
+.segment-chip-sub { font-size: 10.5px; color: var(--muted); line-height: 1.2; margin-top: 1px; }
+
+/* Right side — image + overlay */
+.segment-panel-right {
+  position: relative; overflow: hidden; cursor: pointer; min-height: 320px;
+  background: var(--purple-soft);
 }
-.segment-play-circle svg { width: 28px; height: 28px; fill: #fff; margin-left: 4px; }
-.segment-play-label {
-  font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 600;
-  color: var(--ink-2); letter-spacing: .03em; white-space: nowrap;
-  text-align: center; line-height: 1.3;
+.segment-panel-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .55s ease;
 }
-@media(max-width: 600px) {
-  .segment-panel { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .segment-play-btn { flex-direction: row; gap: 14px; }
-  .segment-play-circle { width: 56px; height: 56px; }
-  .segment-play-circle svg { width: 22px; height: 22px; }
-  .segment-play-label { font-size: 13px; text-align: left; }
+.segment-panel-right:hover .segment-panel-img { transform: scale(1.04); }
+.segment-panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(14,12,36,.28) 0%, rgba(14,12,36,.62) 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
+}
+
+/* Play button with ripple */
+.segment-play-wrap {
+  position: relative; width: 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+}
+.segment-play-ring {
+  position: absolute; border-radius: 50%;
+  border: 2px solid rgba(142,124,255,.55);
+  animation: segRipple 2.4s ease-out infinite;
+}
+.segment-play-ring:nth-child(2) { animation-delay: .8s; }
+@keyframes segRipple {
+  0%   { width: 68px; height: 68px; opacity: .9; }
+  100% { width: 118px; height: 118px; opacity: 0; }
+}
+.segment-play-main {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: rgba(255,255,255,.96);
+  display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer; position: relative; z-index: 2;
+  box-shadow: 0 6px 28px rgba(0,0,0,.35);
+  transition: transform .22s ease, background .22s;
+}
+.segment-panel-right:hover .segment-play-main { transform: scale(1.1); background: #fff; }
+.segment-play-main svg { width: 24px; height: 24px; fill: var(--purple); margin-left: 4px; }
+
+/* Video pill */
+.segment-vid-pill {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(10,10,20,.82); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 99px;
+  padding: 9px 16px 9px 10px;
+  display: flex; align-items: center; gap: 10px; white-space: nowrap;
+}
+.segment-vid-pill-icon {
+  width: 30px; height: 30px; border-radius: 8px; background: var(--purple);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.segment-vid-pill-icon svg { width: 14px; height: 14px; fill: #fff; }
+.segment-vid-pill-title { font-size: 12px; font-weight: 600; color: #fff; font-family: 'Poppins', sans-serif; display: block; }
+.segment-vid-pill-dur { font-size: 10.5px; color: rgba(255,255,255,.55); display: block; margin-top: 1px; }
+
+@media(max-width: 740px) {
+  .segment-panel { grid-template-columns: 1fr; }
+  .segment-panel-right { min-height: 240px; }
+  .segment-panel-left { padding: 26px 24px; }
+  .segment-chips { flex-wrap: wrap; }
+  .segment-chip { flex: 1 1 45%; }
 }
 
 /* Video modal */
@@ -1619,60 +1676,199 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
       <button class="segment-tab" data-seg="ecommerce">E-commerce</button>
     </div>
 
+    <!-- SAÚDE -->
     <div class="segment-panel active" data-seg="saude" data-vid="lMQhW_iArJg">
-      <div class="segment-panel-content">
-        <div class="segment-tag">Clínicas e consultórios</div>
-        <div class="segment-h">Saúde</div>
-        <p class="segment-p">Agendamento de consulta, confirmação e reagendamento, dúvida sobre convênio e exame.</p>
+      <div class="segment-panel-left">
+        <div class="segment-panel-top">
+          <div class="segment-tag">Clínicas e consultórios</div>
+          <div class="segment-h">Saúde</div>
+          <p class="segment-p">Agendamento de consulta, confirmação e reagendamento, dúvida sobre convênio e exame.</p>
+        </div>
+        <div class="segment-chips">
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+            <div><div class="segment-chip-title">Agenda 24h</div><div class="segment-chip-sub">sem interrupções</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div><div class="segment-chip-title">Confirmação</div><div class="segment-chip-sub">automática</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+            <div><div class="segment-chip-title">Tira dúvidas</div><div class="segment-chip-sub">com precisão</div></div>
+          </div>
+        </div>
       </div>
-      <button class="segment-play-btn" aria-label="Ver demonstração Saúde">
-        <div class="segment-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="segment-play-label">Veja como<br>funciona</span>
-      </button>
+      <div class="segment-panel-right">
+        <img class="segment-panel-img" src="seg-saude.webp" alt="Clínica" loading="lazy">
+        <div class="segment-panel-overlay">
+          <div class="segment-play-wrap">
+            <div class="segment-play-ring"></div>
+            <div class="segment-play-ring"></div>
+            <button class="segment-play-main" aria-label="Assistir vídeo Saúde"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="segment-vid-pill">
+            <div class="segment-vid-pill-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.69A1 1 0 0 1 21 8.19v7.62a1 1 0 0 1-1.447.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
+            <div><span class="segment-vid-pill-title">Assistir vídeo de demonstração</span><span class="segment-vid-pill-dur">2:33 min</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- EDUCAÇÃO -->
     <div class="segment-panel" data-seg="educacao" data-vid="GKp7JKtdg4o">
-      <div class="segment-panel-content">
-        <div class="segment-tag">Escolas e cursos</div>
-        <div class="segment-h">Educação</div>
-        <p class="segment-p">Informações sobre mensalidade e curso, renovação de matrícula.</p>
+      <div class="segment-panel-left">
+        <div class="segment-panel-top">
+          <div class="segment-tag">Escolas e cursos</div>
+          <div class="segment-h">Educação</div>
+          <p class="segment-p">Informações sobre mensalidade e curso, renovação de matrícula.</p>
+        </div>
+        <div class="segment-chips">
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <div><div class="segment-chip-title">Matrícula online</div><div class="segment-chip-sub">sem burocracia</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><div class="segment-chip-title">Cobrança</div><div class="segment-chip-sub">automática</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+            <div><div class="segment-chip-title">Suporte 24h</div><div class="segment-chip-sub">para alunos</div></div>
+          </div>
+        </div>
       </div>
-      <button class="segment-play-btn" aria-label="Ver demonstração Educação">
-        <div class="segment-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="segment-play-label">Veja como<br>funciona</span>
-      </button>
+      <div class="segment-panel-right">
+        <img class="segment-panel-img" src="seg-educacao.webp" alt="Educação" loading="lazy">
+        <div class="segment-panel-overlay">
+          <div class="segment-play-wrap">
+            <div class="segment-play-ring"></div>
+            <div class="segment-play-ring"></div>
+            <button class="segment-play-main" aria-label="Assistir vídeo Educação"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="segment-vid-pill">
+            <div class="segment-vid-pill-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.69A1 1 0 0 1 21 8.19v7.62a1 1 0 0 1-1.447.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
+            <div><span class="segment-vid-pill-title">Assistir vídeo de demonstração</span><span class="segment-vid-pill-dur">Ver demonstração</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- INFOPRODUTO -->
     <div class="segment-panel" data-seg="infoproduto" data-vid="V-Cumz_ynWc">
-      <div class="segment-panel-content">
-        <div class="segment-tag">Perpétuo, lançamento, low/high ticket</div>
-        <div class="segment-h">Infoproduto</div>
-        <p class="segment-p">Dúvida antes da compra, recuperação de carrinho, liberação de acesso ao produto.</p>
+      <div class="segment-panel-left">
+        <div class="segment-panel-top">
+          <div class="segment-tag">Perpétuo, lançamento, low/high ticket</div>
+          <div class="segment-h">Infoproduto</div>
+          <p class="segment-p">Dúvida antes da compra, recuperação de carrinho, liberação de acesso ao produto.</p>
+        </div>
+        <div class="segment-chips">
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></div>
+            <div><div class="segment-chip-title">Recupera carrinho</div><div class="segment-chip-sub">automaticamente</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div><div class="segment-chip-title">Libera acesso</div><div class="segment-chip-sub">na hora</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2 2-2.5 3.5M12 17h.01"/></svg></div>
+            <div><div class="segment-chip-title">Suporte pré-venda</div><div class="segment-chip-sub">em tempo real</div></div>
+          </div>
+        </div>
       </div>
-      <button class="segment-play-btn" aria-label="Ver demonstração Infoproduto">
-        <div class="segment-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="segment-play-label">Veja como<br>funciona</span>
-      </button>
+      <div class="segment-panel-right">
+        <img class="segment-panel-img" src="seg-infoproduto.webp" alt="Infoproduto" loading="lazy">
+        <div class="segment-panel-overlay">
+          <div class="segment-play-wrap">
+            <div class="segment-play-ring"></div>
+            <div class="segment-play-ring"></div>
+            <button class="segment-play-main" aria-label="Assistir vídeo Infoproduto"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="segment-vid-pill">
+            <div class="segment-vid-pill-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.69A1 1 0 0 1 21 8.19v7.62a1 1 0 0 1-1.447.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
+            <div><span class="segment-vid-pill-title">Assistir vídeo de demonstração</span><span class="segment-vid-pill-dur">Ver demonstração</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- INDÚSTRIA -->
     <div class="segment-panel" data-seg="industria" data-vid="oOW1ZQUNfBs">
-      <div class="segment-panel-content">
-        <div class="segment-tag">Fabricante, distribuidor, atacado</div>
-        <div class="segment-h">Indústria</div>
-        <p class="segment-p">Pedido de cotação, status de pedido, dúvida técnica sobre o produto.</p>
+      <div class="segment-panel-left">
+        <div class="segment-panel-top">
+          <div class="segment-tag">Fabricante, distribuidor, atacado</div>
+          <div class="segment-h">Indústria</div>
+          <p class="segment-p">Pedido de cotação, status de pedido, dúvida técnica sobre o produto.</p>
+        </div>
+        <div class="segment-chips">
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2z"/><path d="M7 7h.01"/></svg></div>
+            <div><div class="segment-chip-title">Cotação rápida</div><div class="segment-chip-sub">em minutos</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            <div><div class="segment-chip-title">Status de pedido</div><div class="segment-chip-sub">em tempo real</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div><div class="segment-chip-title">Suporte técnico</div><div class="segment-chip-sub">especializado</div></div>
+          </div>
+        </div>
       </div>
-      <button class="segment-play-btn" aria-label="Ver demonstração Indústria">
-        <div class="segment-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="segment-play-label">Veja como<br>funciona</span>
-      </button>
+      <div class="segment-panel-right">
+        <img class="segment-panel-img" src="seg-industria.webp" alt="Indústria" loading="lazy">
+        <div class="segment-panel-overlay">
+          <div class="segment-play-wrap">
+            <div class="segment-play-ring"></div>
+            <div class="segment-play-ring"></div>
+            <button class="segment-play-main" aria-label="Assistir vídeo Indústria"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="segment-vid-pill">
+            <div class="segment-vid-pill-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.69A1 1 0 0 1 21 8.19v7.62a1 1 0 0 1-1.447.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
+            <div><span class="segment-vid-pill-title">Assistir vídeo de demonstração</span><span class="segment-vid-pill-dur">Ver demonstração</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- E-COMMERCE -->
     <div class="segment-panel" data-seg="ecommerce" data-vid="h_yKnC1eBgk">
-      <div class="segment-panel-content">
-        <div class="segment-tag">Loja virtual, marketplace, assinatura</div>
-        <div class="segment-h">E-commerce</div>
-        <p class="segment-p">Rastreio de pedido, troca e devolução, recuperação de carrinho abandonado.</p>
+      <div class="segment-panel-left">
+        <div class="segment-panel-top">
+          <div class="segment-tag">Loja virtual, marketplace, assinatura</div>
+          <div class="segment-h">E-commerce</div>
+          <p class="segment-p">Rastreio de pedido, troca e devolução, recuperação de carrinho abandonado.</p>
+        </div>
+        <div class="segment-chips">
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="segment-chip-title">Rastreia pedido</div><div class="segment-chip-sub">ao vivo</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></div>
+            <div><div class="segment-chip-title">Recupera carrinho</div><div class="segment-chip-sub">abandonado</div></div>
+          </div>
+          <div class="segment-chip">
+            <div class="segment-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+            <div><div class="segment-chip-title">Troca e devolução</div><div class="segment-chip-sub">sem atrito</div></div>
+          </div>
+        </div>
       </div>
-      <button class="segment-play-btn" aria-label="Ver demonstração E-commerce">
-        <div class="segment-play-circle"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <span class="segment-play-label">Veja como<br>funciona</span>
-      </button>
+      <div class="segment-panel-right">
+        <img class="segment-panel-img" src="seg-ecommerce.webp" alt="E-commerce" loading="lazy">
+        <div class="segment-panel-overlay">
+          <div class="segment-play-wrap">
+            <div class="segment-play-ring"></div>
+            <div class="segment-play-ring"></div>
+            <button class="segment-play-main" aria-label="Assistir vídeo E-commerce"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+          </div>
+          <div class="segment-vid-pill">
+            <div class="segment-vid-pill-icon"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.69A1 1 0 0 1 21 8.19v7.62a1 1 0 0 1-1.447.9L15 14M3 8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z"/></svg></div>
+            <div><span class="segment-vid-pill-title">Assistir vídeo de demonstração</span><span class="segment-vid-pill-dur">Ver demonstração</span></div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="btn-row reveal reveal-delay-2">
@@ -1942,7 +2138,7 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
     <div class="trust-wrap reveal reveal-delay-1">
       <div class="trust-badges">
         <div class="trust-badge trust-badge-img">
-          <img src="meta-partner.svg" alt="Meta Business Partner" style="height:44px;width:auto;display:block;">
+          <img src="meta-partner.webp" alt="Meta Business Partner" style="height:44px;width:auto;display:block;">
         </div>
         <div class="trust-badge">
           <div class="trust-badge-icon wa">
@@ -2264,9 +2460,9 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function(){ ratio.innerHTML = ''; }, 280);
   }
 
-  document.querySelectorAll('.segment-play-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var panel = btn.closest('.segment-panel');
+  document.querySelectorAll('.segment-panel-right').forEach(function(area) {
+    area.addEventListener('click', function() {
+      var panel = area.closest('.segment-panel');
       var vidId = panel && panel.dataset.vid;
       if (vidId) openVid(vidId);
     });
