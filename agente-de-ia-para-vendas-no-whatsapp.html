@@ -217,19 +217,15 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 }
 .header-inner {
   max-width: 1180px; margin: 0 auto; padding: 14px 32px;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: center; gap: 24px;
 }
 .brand {
   display: flex; align-items: center; gap: 0;
   text-decoration: none;
 }
 .brand img { height: 32px; width: auto; display: block; }
-.nav { display: flex; align-items: center; gap: 24px; }
-.nav a { font-size: 13.5px; color: var(--ink-2); text-decoration: none; font-weight: 500; transition: color .18s; }
-.nav a:hover { color: var(--purple); }
 @media(max-width: 760px) {
-  .nav a:not(.btn) { display: none; }
-  .header-inner { padding: 12px 20px; }
+  .header-inner { padding: 12px 20px; gap: 16px; }
   .brand img { height: 28px; }
 }
 
@@ -1349,12 +1345,7 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
         <path d="M58.2329 0C26.1814 0 0 26.1826 0 58.2336C0 90.2844 26.1814 116.467 58.2329 116.467C90.2845 116.467 116.466 90.2844 116.466 58.2336C116.466 26.1826 90.2845 0 58.2329 0ZM39.2684 33.8568C46.9464 20.7655 63.1954 15.3484 77.1901 21.2169C78.998 22.1197 79.4444 23.9254 78.998 25.2797L71.3199 38.8224H66.8039C54.1707 38.8224 42.8842 45.5938 36.5602 56.4279C34.7597 48.7536 35.66 40.6281 39.7222 33.8568H39.2684ZM46.4927 89.382C31.1439 89.382 18.5034 78.0962 16.7029 62.7482C16.7029 60.9425 17.6031 59.5877 19.411 59.1368H35.2062C40.6225 72.2275 53.2631 80.8051 67.2577 80.8051H67.7115C62.2952 86.2222 54.6172 89.382 46.4927 89.382ZM83.0603 94.799C81.7062 95.7015 79.8983 95.7015 78.5442 94.3474L70.8735 80.8051C71.7738 79.4503 72.674 78.0962 73.5817 76.7421C79.8982 65.908 79.8982 52.3649 73.5817 41.9824C89.8306 46.497 98.8554 62.7482 94.7931 78.9994C92.9926 85.319 88.9304 91.1876 83.5066 95.2506L83.0603 94.799Z" fill="#393A51"/>
       </svg>
     </a>
-    <nav class="nav">
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#segmentos">Segmentos</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://api.whatsapp.com/send?phone=5548996789080&text=Oi%2C%20quero%20ver%20como%20a%20IA%20da%20Clint%20funciona%20na%20pr%C3%A1tica.&utm_source=landing-page&utm_medium=botao&utm_campaign=lp-agente-ia-para-vendas-no-whatsapp" target="_blank" rel="noopener" class="btn btn-primary">Testar agora</a>
-    </nav>
+    <a href="https://api.whatsapp.com/send?phone=5548996789080&text=Oi%2C%20quero%20ver%20como%20a%20IA%20da%20Clint%20funciona%20na%20pr%C3%A1tica.&utm_source=landing-page&utm_medium=botao&utm_campaign=lp-agente-ia-para-vendas-no-whatsapp" target="_blank" rel="noopener" class="btn btn-primary">Testar agora</a>
   </div>
 </header>
 
