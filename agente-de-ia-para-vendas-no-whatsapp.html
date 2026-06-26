@@ -1293,9 +1293,9 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 @media(max-width: 900px) { .cta-final { grid-template-columns: 1fr; gap: 40px; } }
 
 .lead-form {
-  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.15);
-  border-radius: 24px; padding: 32px;
-  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 600px;
 }
 .lead-form-title { font-weight: 700; font-size: 18px; color: var(--white); margin-bottom: 22px; }
 .lead-form label {
@@ -2472,11 +2472,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
       <div class="lead-form reveal reveal-delay-2">
-        <script type="module">
-          import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/web.js'
-          Typebot.initStandard({ typebot: 'chat-clint' })
-        </script>
-        <typebot-standard style="width:100%;height:600px;border-radius:16px;overflow:hidden;"></typebot-standard>
+        <iframe
+          title="Typebot"
+          src="https://typebot.co/chat-clint"
+          style="border:none;width:100%;height:600px;display:block;"
+          allow="clipboard-write"
+        ></iframe>
       </div>
     </div>
   </div>
