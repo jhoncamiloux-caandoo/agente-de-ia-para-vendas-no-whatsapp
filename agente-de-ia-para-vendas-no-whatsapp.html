@@ -1273,23 +1273,43 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
   display: block; font-size: 11.5px; color: rgba(255,255,255,.6); margin-bottom: 6px;
   font-family: 'JetBrains Mono', monospace; letter-spacing: .04em;
 }
-.lead-form input {
+.lead-form input,
+.lead-form select {
   width: 100%; padding: 13px 16px; border-radius: 12px;
   border: 1.5px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06);
   color: var(--white); font-family: 'Poppins', sans-serif; font-size: 14.5px;
-  margin-bottom: 18px; transition: border-color .2s;
+  margin-bottom: 6px; transition: border-color .2s, background .2s; box-sizing: border-box;
 }
-.lead-form input:focus { outline: none; border-color: var(--purple); background: rgba(142,124,255,.08); }
+.lead-form input:focus,
+.lead-form select:focus { outline: none; border-color: var(--purple); background: rgba(142,124,255,.08); }
 .lead-form input::placeholder { color: rgba(255,255,255,.3); }
+.lead-form select {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.lead-form select option { background: #16162a; color: #fff; }
+.lead-form select.sel-placeholder { color: rgba(255,255,255,.3); }
+.lead-form input.field-error,
+.lead-form select.field-error { border-color: #ff4d6d !important; }
+.form-field-error { font-size: 11px; color: #ff4d6d; margin-bottom: 12px; display: block; min-height: 14px; }
+.lead-form .field-wrap { margin-bottom: 12px; }
+.lead-form .field-wrap input,
+.lead-form .field-wrap select { margin-bottom: 0; }
 .lead-form .btn-submit {
   width: 100%; justify-content: center;
-  background: var(--purple); color: var(--white) !important;
-  border-color: var(--purple); font-size: 15px;
-  padding: 15px; box-shadow: 0 4px 20px rgba(142,124,255,.4);
-  margin-top: 4px;
+  background: linear-gradient(90deg, #8E7CFF 0%, #FF2D6F 100%);
+  color: var(--white) !important; border: none;
+  font-size: 15px; font-weight: 600;
+  padding: 16px; border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(142,124,255,.35);
+  margin-top: 8px; transition: transform .18s, box-shadow .18s, opacity .18s;
 }
-.lead-form .btn-submit:hover { background: var(--purple-dark); box-shadow: 0 8px 28px rgba(142,124,255,.5); }
+.lead-form .btn-submit:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(142,124,255,.5); }
+.lead-form .btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none !important; }
 .form-note { font-size: 11.5px; color: rgba(255,255,255,.4); margin-top: 14px; text-align: center; line-height: 1.45; }
+.form-status-msg { font-size: 13px; margin-top: 12px; text-align: center; line-height: 1.5; }
 
 /* ===== FOOTER ===== */
 .footer { padding: 32px 0; border-top: 1px solid var(--line); }
@@ -2390,15 +2410,77 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
         </div>
       </div>
       <div class="lead-form reveal reveal-delay-2">
-        <div class="lead-form-title">Testar a IA da Clint agora</div>
-        <label for="lf-nome">Nome</label>
-        <input id="lf-nome" type="text" placeholder="Seu nome" autocomplete="name">
-        <label for="lf-wa">WhatsApp</label>
-        <input id="lf-wa" type="tel" placeholder="(00) 00000-0000" autocomplete="tel">
-        <label for="lf-email">E-mail</label>
-        <input id="lf-email" type="email" placeholder="voce@empresa.com" autocomplete="email">
-        <button class="btn btn-large btn-submit" type="button">Quero testar agora</button>
-        <p class="form-note">Em poucos segundos a IA da Clint te responde no WhatsApp.</p>
+        <div class="lead-form-title">Fale com um especialista</div>
+        <form id="lead-form" novalidate autocomplete="on">
+          <label for="lf-nome">NOME</label>
+          <div class="field-wrap">
+            <input id="lf-nome" name="name" type="text" placeholder="Seu nome" autocomplete="name" required>
+            <span class="form-field-error" id="err-nome"></span>
+          </div>
+          <label for="lf-email">E-MAIL</label>
+          <div class="field-wrap">
+            <input id="lf-email" name="email" type="email" placeholder="voce@empresa.com" autocomplete="email" required>
+            <span class="form-field-error" id="err-email"></span>
+          </div>
+          <label for="lf-phone">TELEFONE</label>
+          <div class="field-wrap">
+            <input id="lf-phone" name="phone" type="tel" placeholder="(11) 99999-9999" autocomplete="tel" required>
+            <span class="form-field-error" id="err-phone"></span>
+          </div>
+          <label for="lf-segment">SEGMENTO DA EMPRESA</label>
+          <div class="field-wrap">
+            <select id="lf-segment" name="company_segment" required class="sel-placeholder">
+              <option value="" disabled selected>Selecione...</option>
+              <option>Agência de marketing</option>
+              <option>Alimentação e Bebidas</option>
+              <option>Apostas esportivas / Bets</option>
+              <option>Auto Escola</option>
+              <option>Automotivo</option>
+              <option>Construção civil</option>
+              <option>Consultoria Comercial / Vendas</option>
+              <option>Consultoria e treinamentos</option>
+              <option>Contabilidade</option>
+              <option>E-commerce</option>
+              <option>Educação e ensino</option>
+              <option>Eventos</option>
+              <option>Fitness e Bem-Estar</option>
+              <option>Franquias</option>
+              <option>Imobiliárias</option>
+              <option>Indústria geral</option>
+              <option>Infoproduto</option>
+              <option>Jurídico</option>
+              <option>Logística / Transportes</option>
+              <option>Mídia e Comunicação</option>
+              <option>Moda</option>
+              <option>ONGs / Terceiro Setor</option>
+              <option>Saúde e Estética</option>
+              <option>Seguros</option>
+              <option>Serviços Financeiros</option>
+              <option>Software e Tecnologia</option>
+              <option>Turismo e Hotelaria</option>
+              <option>Varejo/Loja Física</option>
+            </select>
+            <span class="form-field-error" id="err-segment"></span>
+          </div>
+          <label for="lf-revenue">FATURAMENTO MENSAL</label>
+          <div class="field-wrap">
+            <select id="lf-revenue" name="monthly_revenue" required class="sel-placeholder">
+              <option value="" disabled selected>Selecione...</option>
+              <option>Ainda não faturo</option>
+              <option>Até R$ 15.000</option>
+              <option>De R$ 15.000 a R$ 30.000</option>
+              <option>De R$ 30.000 a R$ 60.000</option>
+              <option>De R$ 60.000 a R$ 100.000</option>
+              <option>De R$ 100.000 a R$ 250.000</option>
+              <option>De R$ 250.000 a R$ 500.000</option>
+              <option>De R$ 500.000 a R$ 1.000.000</option>
+              <option>Acima de R$ 1 Milhão</option>
+            </select>
+            <span class="form-field-error" id="err-revenue"></span>
+          </div>
+          <button class="btn btn-large btn-submit" type="submit" id="lf-submit">Quero falar com um especialista</button>
+          <p class="form-status-msg" id="form-status-msg"></p>
+        </form>
       </div>
     </div>
   </div>
@@ -2760,6 +2842,122 @@ document.addEventListener('DOMContentLoaded', function(){
     }, { threshold: 0.2 });
     workObs.observe(workSection);
   }
+})();
+
+/* ========== LEAD FORM ========== */
+(function () {
+  /* --- UTM capture --- */
+  function getUtms() {
+    var p = new URLSearchParams(window.location.search);
+    return {
+      utm_source:   p.get('utm_source')   || '',
+      utm_medium:   p.get('utm_medium')   || '',
+      utm_campaign: p.get('utm_campaign') || '',
+      utm_term:     p.get('utm_term')     || '',
+      utm_content:  p.get('utm_content')  || ''
+    };
+  }
+
+  /* --- Phone mask (BR) --- */
+  var phoneEl = document.getElementById('lf-phone');
+  if (phoneEl) {
+    phoneEl.addEventListener('input', function () {
+      var v = this.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length <= 2)  { this.value = '(' + v; return; }
+      if (v.length <= 6)  { this.value = '(' + v.slice(0,2) + ') ' + v.slice(2); return; }
+      if (v.length <= 10) { this.value = '(' + v.slice(0,2) + ') ' + v.slice(2,6) + '-' + v.slice(6); return; }
+      this.value = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    });
+  }
+
+  /* --- Select placeholder color --- */
+  document.querySelectorAll('#lead-form select').forEach(function (sel) {
+    sel.addEventListener('change', function () {
+      this.classList.toggle('sel-placeholder', !this.value);
+    });
+  });
+
+  /* --- Validation helpers --- */
+  var rules = {
+    'lf-nome':    function (v) { return v.trim().length >= 2 ? '' : 'Campo obrigatório'; },
+    'lf-email':   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'E-mail inválido'; },
+    'lf-phone':   function (v) { return v.replace(/\D/g,'').length >= 10 ? '' : 'Telefone inválido'; },
+    'lf-segment': function (v) { return v ? '' : 'Selecione um segmento'; },
+    'lf-revenue': function (v) { return v ? '' : 'Selecione o faturamento'; }
+  };
+  var errIds = {
+    'lf-nome': 'err-nome', 'lf-email': 'err-email',
+    'lf-phone': 'err-phone', 'lf-segment': 'err-segment', 'lf-revenue': 'err-revenue'
+  };
+
+  function setErr(fieldId, msg) {
+    var field = document.getElementById(fieldId);
+    var errEl = document.getElementById(errIds[fieldId]);
+    if (!field || !errEl) return;
+    errEl.textContent = msg;
+    field.classList.toggle('field-error', !!msg);
+  }
+
+  /* --- Inline validation on blur --- */
+  Object.keys(rules).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('blur', function () { setErr(id, rules[id](this.value)); });
+    if (el) el.addEventListener('change', function () { setErr(id, rules[id](this.value)); });
+  });
+
+  /* --- Submit --- */
+  var form   = document.getElementById('lead-form');
+  var btn    = document.getElementById('lf-submit');
+  var status = document.getElementById('form-status-msg');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    /* validate all fields */
+    var valid = true;
+    Object.keys(rules).forEach(function (id) {
+      var el = document.getElementById(id);
+      var msg = rules[id](el ? el.value : '');
+      setErr(id, msg);
+      if (msg) valid = false;
+    });
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    status.textContent = '';
+    status.style.color = '';
+
+    var payload = {
+      name:             document.getElementById('lf-nome').value.trim(),
+      email:            document.getElementById('lf-email').value.trim(),
+      phone:            document.getElementById('lf-phone').value.trim(),
+      company_segment:  document.getElementById('lf-segment').value,
+      monthly_revenue:  document.getElementById('lf-revenue').value
+    };
+    Object.assign(payload, getUtms());
+
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('server');
+      btn.textContent = '✓ Enviado com sucesso!';
+      status.textContent = 'Obrigado! Um especialista vai entrar em contato em breve.';
+      status.style.color = '#4ade80';
+      form.reset();
+      document.querySelectorAll('#lead-form select').forEach(function (s) { s.classList.add('sel-placeholder'); });
+    })
+    .catch(function () {
+      btn.disabled = false;
+      btn.textContent = 'Quero falar com um especialista';
+      status.textContent = 'Erro ao enviar. Tente novamente ou fale pelo WhatsApp.';
+      status.style.color = '#ff4d6d';
+    });
+  });
 })();
 </script>
 <!-- Video modal -->
