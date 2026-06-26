@@ -1092,25 +1092,24 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .fcard-meta { margin-left: auto; display: flex; align-items: center; gap: 4px; }
 .fcard-badge { display: flex; align-items: center; gap: 1.5px; font-size: 5.5px; color: #8B89AD; font-family: 'Poppins', sans-serif; font-weight: 600; white-space: nowrap; }
 .fcard-badge svg { color: #B6B6C6; flex-shrink: 0; }
-/* ===== Card migrando Novos -> Qualificados (coluna encolhe/cresce) ===== */
-.fcard-move-novo, .fcard-move-qualif { overflow: hidden; will-change: max-height, opacity, transform; }
-.fcard-move-qualif { max-height: 0; opacity: 0; margin-bottom: -6px; }
+/* ===== Card migrando Novos -> Qualificados (coluna altura fixa, só card anima) ===== */
+.fcard-move-novo, .fcard-move-qualif { will-change: opacity, transform; }
+.fcard-move-qualif { opacity: 0; }
 .reveal.visible .fcard-move-novo  { animation: fMoveNovo  8s cubic-bezier(.45,0,.2,1) 1s infinite; }
 .reveal.visible .fcard-move-qualif { animation: fMoveQualif 8s cubic-bezier(.45,0,.2,1) 1s infinite; }
 @keyframes fMoveNovo {
-  0%,38%   { max-height: 90px; opacity: 1; margin-bottom: 6px; transform: translateX(0) scale(1); }
-  46%      { max-height: 90px; opacity: 0; margin-bottom: 6px; transform: translateX(48%) scale(.95); }
-  50%,86%  { max-height: 0;    opacity: 0; margin-bottom: -6px; transform: translateX(48%) scale(.95); }
-  94%,100% { max-height: 90px; opacity: 1; margin-bottom: 6px; transform: translateX(0) scale(1); }
+  0%,38%   { opacity: 1; transform: translateX(0) scale(1); }
+  46%,86%  { opacity: 0; transform: translateX(48%) scale(.95); }
+  94%,100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 @keyframes fMoveQualif {
-  0%,46%   { max-height: 0;    opacity: 0; margin-bottom: -6px; transform: translateX(-48%) scale(.95); }
-  54%,82%  { max-height: 90px; opacity: 1; margin-bottom: 6px; transform: translateX(0) scale(1); }
-  90%,100% { max-height: 0;    opacity: 0; margin-bottom: -6px; transform: translateX(-48%) scale(.95); }
+  0%,46%   { opacity: 0; transform: translateX(-48%) scale(.95); }
+  54%,82%  { opacity: 1; transform: translateX(0) scale(1); }
+  90%,100% { opacity: 0; transform: translateX(-48%) scale(.95); }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal.visible .fcard-move-novo, .reveal.visible .fcard-move-qualif { animation: none; }
-  .fcard-move-qualif { display: none; }
+  .fcard-move-qualif { opacity: 0; }
 }
 
 .mock-metrics { display: flex; flex-direction: column; gap: 8px; }
