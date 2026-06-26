@@ -743,64 +743,63 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 /* ===== PHONE MOCKUP ===== */
 .phone-mockup-outer {
   position: relative;
-  width: 248px;
+  width: 300px;
   margin: 0 auto;
-  /* Metallic titanium frame */
-  background: linear-gradient(175deg, #3c3c52 0%, #16161f 45%, #22222e 100%);
-  border-radius: 44px;
-  padding: 13px 9px 20px;
+  background: linear-gradient(175deg, #2e2e3e 0%, #111118 50%, #1c1c26 100%);
+  border-radius: 46px;
+  padding: 14px 10px 20px;
   box-shadow:
-    inset 0 2px 1px rgba(255,255,255,.14),
-    inset 0 -1px 0 rgba(255,255,255,.05),
-    0 0 0 1px rgba(255,255,255,.06),
-    0 0 0 3px #08080f,
-    0 0 0 4px rgba(255,255,255,.04),
-    0 28px 64px rgba(0,0,0,.28),
-    0 8px 24px rgba(0,0,0,.16),
-    0 0 48px rgba(142,124,255,.08);
+    inset 0 2px 1px rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.04),
+    0 0 0 1px rgba(255,255,255,.05),
+    0 0 0 3px #09090f,
+    0 0 0 4px rgba(255,255,255,.03),
+    0 20px 50px rgba(0,0,0,.22),
+    0 6px 16px rgba(0,0,0,.12),
+    0 0 40px rgba(142,124,255,.06);
 }
-/* Topo brilhante (reflexo metálico) */
 .phone-mockup-outer::before {
   content: "";
-  position: absolute; top: 0; left: 15%; right: 15%; height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  position: absolute; top: 0; left: 18%; right: 18%; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
   border-radius: 99px;
 }
 .phone-island {
-  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-  width: 94px; height: 28px;
-  background: #000;
-  border-radius: 16px;
-  z-index: 30;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,.08);
+  position: absolute; top: 21px; left: 50%; transform: translateX(-50%);
+  width: 96px; height: 28px; background: #000; border-radius: 16px; z-index: 30;
 }
-/* Botões laterais */
-.phone-vol-up  { position: absolute; left: -3px; top: 96px;  width: 3px; height: 26px; background: linear-gradient(180deg,#2e2e40,#1a1a28); border-radius: 2px 0 0 2px; }
-.phone-vol-dn  { position: absolute; left: -3px; top: 130px; width: 3px; height: 26px; background: linear-gradient(180deg,#2e2e40,#1a1a28); border-radius: 2px 0 0 2px; }
-.phone-pwr-btn { position: absolute; right: -3px; top: 112px; width: 3px; height: 50px; background: linear-gradient(180deg,#2e2e40,#1a1a28); border-radius: 0 2px 2px 0; }
-/* Tela */
-.phone-screen {
-  background: #000;
-  border-radius: 33px;
-  overflow: hidden;
-  position: relative;
-}
-/* Reflexo de vidro sutil */
+.phone-vol-up  { position: absolute; left: -3px; top: 104px; width: 3px; height: 26px; background: #1a1a24; border-radius: 2px 0 0 2px; }
+.phone-vol-dn  { position: absolute; left: -3px; top: 140px; width: 3px; height: 26px; background: #1a1a24; border-radius: 2px 0 0 2px; }
+.phone-pwr-btn { position: absolute; right: -3px; top: 120px; width: 3px; height: 52px; background: #1a1a24; border-radius: 0 2px 2px 0; }
+.phone-screen { background: #000; border-radius: 34px; overflow: hidden; position: relative; }
 .phone-screen::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(145deg, rgba(255,255,255,.05) 0%, transparent 40%);
-  z-index: 50; pointer-events: none; border-radius: 33px;
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.04) 0%, transparent 35%);
+  z-index: 50; pointer-events: none; border-radius: 34px;
 }
 .phone-statusbar {
   background: linear-gradient(135deg, var(--ink) 0%, #1a1545 100%);
-  height: 48px; display: flex; align-items: flex-end;
-  padding: 0 18px 7px; justify-content: space-between;
+  height: 50px; display: flex; align-items: flex-end;
+  padding: 0 20px 8px; justify-content: space-between;
 }
-.phone-status-time { font-size: 11px; font-weight: 700; color: #fff; font-family: 'Poppins', sans-serif; letter-spacing: .01em; }
-.phone-status-icons { display: flex; align-items: center; gap: 4px; }
-.phone-home-area { background: #ece8e3; height: 24px; display: flex; align-items: center; justify-content: center; }
-.phone-home-pill { width: 90px; height: 4px; background: rgba(0,0,0,.22); border-radius: 3px; }
+.phone-status-time { font-size: 11.5px; font-weight: 700; color: #fff; font-family: 'Poppins', sans-serif; }
+.phone-status-icons { display: flex; align-items: center; gap: 5px; }
+/* Input bar WhatsApp */
+.demo-chat-input-bar {
+  background: #f0ece8; border-top: 1px solid rgba(0,0,0,.08);
+  padding: 8px 12px; display: flex; align-items: center; gap: 8px;
+}
+.demo-chat-input-field {
+  flex: 1; background: #fff; border-radius: 999px;
+  padding: 7px 14px; font-size: 12px; color: rgba(0,0,0,.38);
+  font-family: 'Poppins', sans-serif; border: 1px solid rgba(0,0,0,.08);
+}
+.demo-chat-input-mic {
+  width: 34px; height: 34px; border-radius: 50%; background: #25D366;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.phone-home-area { background: #f0ece8; height: 22px; display: flex; align-items: center; justify-content: center; }
+.phone-home-pill { width: 90px; height: 4px; background: rgba(0,0,0,.18); border-radius: 3px; }
 
 .demo-chat-frame { display: none; }
 .demo-chat-header {
@@ -810,14 +809,24 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .demo-chat-avatar {
   width: 34px; height: 34px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  overflow: hidden; background: rgba(255,255,255,.1); border: 1.5px solid rgba(255,255,255,.15);
+  overflow: hidden; background: rgba(255,255,255,.12);
 }
 .demo-chat-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
-.demo-chat-name { font-weight: 600; font-size: 12.5px; color: var(--white); }
+.demo-chat-name { font-weight: 600; font-size: 13px; color: var(--white); }
 .demo-chat-sub { font-size: 10.5px; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 4px; }
 .demo-chat-sub::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
-
-.demo-chat-body { padding: 14px 14px 14px; background: #ece8e3; display: flex; flex-direction: column; gap: 8px; }
+/* Chat body com fade no rodapé */
+.demo-chat-body {
+  padding: 14px 14px 0; background: #ece8e3;
+  max-height: 280px; overflow: hidden;
+  display: flex; flex-direction: column; gap: 9px;
+  position: relative;
+}
+.demo-chat-body::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 56px;
+  background: linear-gradient(transparent, #ece8e3);
+  pointer-events: none; z-index: 2;
+}
 .demo-chat-msg { display: flex; flex-direction: column; }
 .demo-chat-msg.user { align-items: flex-start; }
 .demo-chat-msg.ai { align-items: flex-end; }
@@ -1692,6 +1701,12 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
             <div class="demo-crm-badge">
               <svg style="width:12px;height:12px;stroke:var(--purple);fill:none;stroke-width:2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
               CRM atualizado · Etapa: Qualificado
+            </div>
+          </div>
+          <div class="demo-chat-input-bar">
+            <div class="demo-chat-input-field">Mensagem</div>
+            <div class="demo-chat-input-mic">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm6.5 9a.5.5 0 0 1 1 0 7.5 7.5 0 0 1-7 7.48V20h2.5a.5.5 0 0 1 0 1h-6a.5.5 0 0 1 0-1H11v-2.52A7.5 7.5 0 0 1 4.5 10a.5.5 0 0 1 1 0 6.5 6.5 0 0 0 13 0z"/></svg>
             </div>
           </div>
           <div class="phone-home-area"><div class="phone-home-pill"></div></div>
