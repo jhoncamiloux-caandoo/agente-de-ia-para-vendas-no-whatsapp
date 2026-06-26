@@ -737,17 +737,43 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .work-desc { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
 
 /* ===== DEMO ===== */
-.demo-wrap { display: grid; grid-template-columns: .95fr 1.05fr; gap: 56px; align-items: center; }
+.demo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 @media(max-width: 900px) { .demo-wrap { grid-template-columns: 1fr; } }
 
-.demo-chat-frame {
-  border-radius: 22px; overflow: hidden;
-  box-shadow: var(--shadow-float); border: 1px solid var(--line);
-  background: var(--white);
+/* Phone mockup */
+.phone-mockup-outer {
+  position: relative; width: 290px; margin: 0 auto;
+  background: linear-gradient(145deg, #1c1c2e, #0f0f1c);
+  border-radius: 50px; padding: 18px 12px 28px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.07),
+    0 0 0 5px #0a0a14,
+    0 0 0 6px rgba(255,255,255,.04),
+    0 40px 90px rgba(0,0,0,.55),
+    0 0 60px rgba(142,124,255,.1);
 }
+.phone-island {
+  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  width: 112px; height: 32px; background: #000; border-radius: 20px; z-index: 20;
+}
+.phone-vol-up  { position: absolute; left: -4px; top: 110px; width: 4px; height: 28px; background: #0a0a14; border-radius: 2px 0 0 2px; }
+.phone-vol-dn  { position: absolute; left: -4px; top: 148px; width: 4px; height: 28px; background: #0a0a14; border-radius: 2px 0 0 2px; }
+.phone-pwr-btn { position: absolute; right: -4px; top: 132px; width: 4px; height: 56px; background: #0a0a14; border-radius: 0 2px 2px 0; }
+.phone-screen { background: var(--white); border-radius: 36px; overflow: hidden; }
+.phone-statusbar {
+  background: linear-gradient(135deg, var(--ink) 0%, #1a1545 100%);
+  height: 52px; display: flex; align-items: flex-end;
+  padding: 0 20px 8px; justify-content: space-between;
+}
+.phone-status-time { font-size: 11.5px; font-weight: 700; color: #fff; font-family: 'Poppins', sans-serif; }
+.phone-status-icons { display: flex; align-items: center; gap: 5px; }
+.phone-home-area { background: #f0ece8; height: 28px; display: flex; align-items: center; justify-content: center; }
+.phone-home-pill { width: 110px; height: 4px; background: rgba(0,0,0,.18); border-radius: 3px; }
+
+.demo-chat-frame { display: none; } /* replaced by phone-mockup-outer */
 .demo-chat-header {
   background: linear-gradient(135deg, var(--ink) 0%, #1a1545 100%);
-  padding: 16px 20px; display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px; display: flex; align-items: center; gap: 10px;
 }
 .demo-chat-avatar {
   width: 36px; height: 36px; border-radius: 50%;
@@ -1591,37 +1617,52 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
         <p class="sub">Uma inteligência que entende o contexto e se adapta, não um chatbot que decora script.</p>
         <div class="btn-row"><a href="https://api.whatsapp.com/send?phone=5548996789080&text=Oi%2C%20quero%20ver%20como%20a%20IA%20da%20Clint%20funciona%20na%20pr%C3%A1tica.&utm_source=landing-page&utm_medium=botao&utm_campaign=lp-agente-ia-para-vendas-no-whatsapp" target="_blank" rel="noopener" class="btn btn-whatsapp"><svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Testar agora no WhatsApp</a></div>
       </div>
-      <div class="demo-chat-frame reveal reveal-delay-2">
-        <div class="demo-chat-header">
-          <div class="demo-chat-avatar"><img src="ia-clint.webp" alt="Clint IA" width="36" height="36"></div>
-          <div>
-            <div class="demo-chat-name">Clint IA · Qualificação</div>
-            <div class="demo-chat-sub">Respondendo em tempo real</div>
+      <div class="phone-mockup-outer reveal reveal-delay-2">
+        <div class="phone-island"></div>
+        <div class="phone-vol-up"></div>
+        <div class="phone-vol-dn"></div>
+        <div class="phone-pwr-btn"></div>
+        <div class="phone-screen">
+          <div class="phone-statusbar">
+            <span class="phone-status-time">09:14</span>
+            <div class="phone-status-icons">
+              <svg width="16" height="11" viewBox="0 0 16 11" fill="#fff" opacity=".9"><rect x="0" y="5" width="3" height="6" rx="1" opacity=".4"/><rect x="4.5" y="3" width="3" height="8" rx="1" opacity=".6"/><rect x="9" y="1" width="3" height="10" rx="1" opacity=".85"/><rect x="13.5" y="0" width="2.5" height="11" rx="1"/></svg>
+              <svg width="15" height="11" viewBox="0 0 15 11" fill="#fff" opacity=".9"><path d="M7.5 2.2C9.6 2.2 11.5 3.1 12.8 4.5L14 3.2C12.4 1.2 10.1 0 7.5 0S2.6 1.2 1 3.2l1.2 1.3C3.5 3.1 5.4 2.2 7.5 2.2z" opacity=".5"/><path d="M7.5 4.8C9 4.8 10.3 5.4 11.2 6.4L12.4 5C11.2 3.8 9.4 3 7.5 3S3.8 3.8 2.6 5l1.2 1.4C4.7 5.4 6 4.8 7.5 4.8z" opacity=".75"/><circle cx="7.5" cy="9" r="2"/></svg>
+              <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x=".5" y=".5" width="21" height="11" rx="3.5" stroke="#fff" stroke-opacity=".4"/><rect x="1.5" y="1.5" width="16" height="9" rx="2.5" fill="#fff"/><path d="M23 4v4a2 2 0 000-4z" fill="#fff" fill-opacity=".45"/></svg>
+            </div>
           </div>
-        </div>
-        <div class="demo-chat-body">
-          <div class="demo-chat-msg user">
-            <div class="demo-chat-bubble">Quero saber mais sobre o agente de IA de vocês.</div>
-            <div class="demo-chat-time">09:14</div>
+          <div class="demo-chat-header">
+            <div class="demo-chat-avatar"><img src="ia-clint.webp" alt="Clint IA" width="36" height="36"></div>
+            <div>
+              <div class="demo-chat-name">Clint IA · Qualificação</div>
+              <div class="demo-chat-sub">Respondendo em tempo real</div>
+            </div>
           </div>
-          <div class="demo-chat-msg ai">
-            <div class="demo-ai-label">IA Clint</div>
-            <div class="demo-chat-bubble">Oi! Que ótimo. Você vende B2B ou B2C? E seu time usa WhatsApp pra fechar negócios hoje?</div>
-            <div class="demo-chat-time">09:14 · 3s</div>
+          <div class="demo-chat-body">
+            <div class="demo-chat-msg user">
+              <div class="demo-chat-bubble">Quero saber mais sobre o agente de IA de vocês.</div>
+              <div class="demo-chat-time">09:14</div>
+            </div>
+            <div class="demo-chat-msg ai">
+              <div class="demo-ai-label">IA Clint</div>
+              <div class="demo-chat-bubble">Oi! Que ótimo. Você vende B2B ou B2C? E seu time usa WhatsApp pra fechar negócios hoje?</div>
+              <div class="demo-chat-time">09:14 · 3s</div>
+            </div>
+            <div class="demo-chat-msg user">
+              <div class="demo-chat-bubble">B2B, time de 5 pessoas, WhatsApp é nosso canal principal.</div>
+              <div class="demo-chat-time">09:15</div>
+            </div>
+            <div class="demo-chat-msg ai">
+              <div class="demo-ai-label">IA Clint</div>
+              <div class="demo-chat-bubble">Perfeito. Temos cases exatamente nesse perfil. Em quanto tempo seu time costuma responder um novo lead hoje?</div>
+              <div class="demo-chat-time">09:15 · 2s</div>
+            </div>
+            <div class="demo-crm-badge">
+              <svg style="width:12px;height:12px;stroke:var(--purple);fill:none;stroke-width:2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+              CRM atualizado · Etapa: Qualificado
+            </div>
           </div>
-          <div class="demo-chat-msg user">
-            <div class="demo-chat-bubble">B2B, time de 5 pessoas, WhatsApp é nosso canal principal.</div>
-            <div class="demo-chat-time">09:15</div>
-          </div>
-          <div class="demo-chat-msg ai">
-            <div class="demo-ai-label">IA Clint</div>
-            <div class="demo-chat-bubble">Perfeito. Temos cases exatamente nesse perfil. Em quanto tempo seu time costuma responder um novo lead hoje?</div>
-            <div class="demo-chat-time">09:15 · 2s</div>
-          </div>
-          <div class="demo-crm-badge">
-            <svg style="width:12px;height:12px;stroke:var(--purple);fill:none;stroke-width:2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-            CRM atualizado · Etapa: Qualificado
-          </div>
+          <div class="phone-home-area"><div class="phone-home-pill"></div></div>
         </div>
       </div>
     </div>
