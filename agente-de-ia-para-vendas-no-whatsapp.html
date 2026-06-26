@@ -1062,22 +1062,31 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 .mock-score-fill { height: 100%; border-radius: 999px; background: var(--purple); width: 78%; }
 .mock-score-num { font-weight: 700; font-size: 11px; color: var(--purple); }
 
-.mock-funnel { display: flex; gap: 6px; overflow: hidden; }
-.mock-funnel-col { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.mock-funnel-head { font-family: 'Poppins', sans-serif; font-size: 7.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
-/* ===== FUNNEL CARDS ===== */
-.fcard { background: #fff; border: 1px solid var(--line); border-radius: 9px; padding: 7px 8px 5px; box-shadow: 0 1px 5px rgba(0,0,0,.06); }
-.fcard-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
-.fcard-tag { font-size: 6px; font-family: 'Poppins', sans-serif; font-weight: 700; padding: 1.5px 5px; border-radius: 99px; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 64px; }
-.fcard-av { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 5.5px; font-weight: 800; font-family: 'Poppins', sans-serif; color: #fff; flex-shrink: 0; }
-.fcard-name { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 700; color: var(--ink); margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.fcard-price { font-size: 7.5px; color: var(--muted); font-family: 'Poppins', sans-serif; font-weight: 500; }
-.fcard-sep { height: 1px; background: var(--line); margin: 5px -8px; }
-.fcard-foot { display: flex; align-items: center; gap: 3px; }
-.fcard-foot-av { width: 12px; height: 12px; border-radius: 50%; font-size: 4px; font-weight: 800; font-family: 'Poppins', sans-serif; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.fcard-icons { display: flex; gap: 2.5px; align-items: center; }
-.fcard-icon { color: #ccc; flex-shrink: 0; }
-.fcard-stat { font-size: 6.5px; color: var(--muted); font-family: 'Poppins', sans-serif; margin-left: auto; font-weight: 600; }
+.mock-funnel { display: flex; gap: 7px; overflow: hidden; background: #F5F5FA; border-radius: 10px; padding: 9px 8px; }
+.mock-funnel-col { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.mock-funnel-head { display: flex; align-items: center; gap: 4px; margin-bottom: 2px; }
+.mock-funnel-head .fh-name { font-family: 'Poppins', sans-serif; font-size: 8px; color: var(--ink); font-weight: 700; }
+.mock-funnel-head .fh-count { font-size: 6.5px; font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--muted); background: #E7E7F0; border-radius: 99px; padding: 0.5px 5px; line-height: 1.6; }
+/* ===== FUNNEL CARDS (réplica CRM Clint) ===== */
+.fcard { background: #fff; border: 1px solid #ECECF3; border-radius: 9px; padding: 7px 8px 6px; box-shadow: 0 1px 4px rgba(20,16,60,.05); }
+.fcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 4px; margin-bottom: 5px; }
+.fcard-tags { display: flex; flex-wrap: wrap; gap: 2.5px; min-width: 0; }
+.fcard-tag { font-size: 5.5px; font-family: 'Poppins', sans-serif; font-weight: 700; padding: 1.5px 4px; border-radius: 4px; line-height: 1.5; white-space: nowrap; }
+.tag-wa   { background: #DCFCE7; color: #15803D; }
+.tag-clp  { background: #E2EEFF; color: #1D6FD6; }
+.tag-ig   { background: #FDEADD; color: #C2410C; }
+.tag-live { background: #EDE9FE; color: #7C3AED; }
+.fcard-av { width: 21px; height: 21px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 6px; font-weight: 800; font-family: 'Poppins', sans-serif; color: #fff; flex-shrink: 0; }
+.fcard-mid { display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 6px; }
+.fcard-name { font-family: 'Poppins', sans-serif; font-size: 8.5px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fcard-price { font-size: 8px; color: var(--ink); font-family: 'Poppins', sans-serif; font-weight: 700; flex-shrink: 0; }
+.fcard-foot { display: flex; align-items: center; gap: 3px; padding-top: 5px; border-top: 1px solid #F1F1F7; }
+.fcard-foot-av { width: 13px; height: 13px; border-radius: 50%; font-size: 4.5px; font-weight: 800; font-family: 'Poppins', sans-serif; color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fcard-channels { display: flex; gap: 2.5px; align-items: center; }
+.fcard-icon { color: #C4C4D2; flex-shrink: 0; }
+.fcard-meta { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.fcard-badge { display: flex; align-items: center; gap: 1.5px; font-size: 5.5px; color: var(--muted); font-family: 'Poppins', sans-serif; font-weight: 600; white-space: nowrap; }
+.fcard-badge svg { color: #B6B6C6; flex-shrink: 0; }
 /* Card move animation */
 .fcard-novo-anim, .fcard-qualif-anim { opacity: 0; }
 .reveal.visible .fcard-novo-anim { animation: fcardNovo 7s cubic-bezier(.4,0,.2,1) 0.8s infinite; }
@@ -2040,119 +2049,128 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
             <div><div class="mock-title">Funil de Vendas</div></div>
           </div>
           <div class="mock-funnel">
-            <!-- NOVO -->
+            <!-- NOVOS -->
             <div class="mock-funnel-col">
-              <div class="mock-funnel-head">Novo</div>
+              <div class="mock-funnel-head"><span class="fh-name">Novos</span><span class="fh-count">12</span></div>
               <div class="fcard">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#FFF0DF;color:#B84800">Imob.</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-wa">WhatsApp</span><span class="fcard-tag tag-clp">CLP1</span></span>
                   <span class="fcard-av" style="background:#F07030">AM</span>
                 </div>
-                <div class="fcard-name">Ana Martins</div>
-                <div class="fcard-price">R$ 850</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">Ana Martins</span><span class="fcard-price">R$ 850</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#F07030">AM</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">30m</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>1/12</span>
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30m</span>
+                  </span>
                 </div>
               </div>
               <div class="fcard">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#E6F4FF;color:#0059B3">SaaS</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-ig">DM-Instagram</span><span class="fcard-tag tag-clp">CLP1</span></span>
                   <span class="fcard-av" style="background:#3B82F6">PR</span>
                 </div>
-                <div class="fcard-name">Pedro Rocha</div>
-                <div class="fcard-price">R$ 2.100</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">Pedro Rocha</span><span class="fcard-price">R$ 2.100</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#3B82F6">PR</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">2h</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>3/12</span>
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2h</span>
+                  </span>
                 </div>
               </div>
-              <!-- animated card: appears in Novo, then moves to Qualif. -->
+              <!-- animated card: aparece em Novos, depois move pra Qualificado -->
               <div class="fcard fcard-novo-anim" style="border-color:#d5d0ff">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#F0EEFF;color:#5B3FBF">E-com.</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-live">Live03</span><span class="fcard-tag tag-wa">WhatsApp</span></span>
                   <span class="fcard-av" style="background:#8E7CFF">CN</span>
                 </div>
-                <div class="fcard-name">Carlos Nunes</div>
-                <div class="fcard-price">R$ 490</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">Carlos Nunes</span><span class="fcard-price">R$ 490</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#8E7CFF">CN</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">agora</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>agora</span>
+                  </span>
                 </div>
               </div>
             </div>
-            <!-- QUALIF. -->
+            <!-- QUALIFICADO -->
             <div class="mock-funnel-col">
-              <div class="mock-funnel-head">Qualif.</div>
-              <div class="fcard" style="border-color:#d5d0ff">
+              <div class="mock-funnel-head"><span class="fh-name">Qualificado</span><span class="fh-count">8</span></div>
+              <div class="fcard">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#E3FAF0;color:#0B6E3F">Tech</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-wa">WhatsApp</span><span class="fcard-tag tag-clp">CLP1</span></span>
                   <span class="fcard-av" style="background:#22C55E">JS</span>
                 </div>
-                <div class="fcard-name">João Silva</div>
-                <div class="fcard-price">R$ 3.600</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">João Silva</span><span class="fcard-price">R$ 3.600</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#22C55E">JS</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">1h</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>6/12</span>
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1h</span>
+                  </span>
                 </div>
               </div>
-              <!-- animated target: Carlos Nunes arriving from Novo -->
+              <!-- animated target: Carlos Nunes chegando de Novos -->
               <div class="fcard fcard-qualif-anim" style="border-color:#d5d0ff">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#F0EEFF;color:#5B3FBF">E-com.</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-live">Live03</span><span class="fcard-tag tag-wa">WhatsApp</span></span>
                   <span class="fcard-av" style="background:#8E7CFF">CN</span>
                 </div>
-                <div class="fcard-name">Carlos Nunes</div>
-                <div class="fcard-price">R$ 490</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">Carlos Nunes</span><span class="fcard-price">R$ 490</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#8E7CFF">CN</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">agora</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>agora</span>
+                  </span>
                 </div>
               </div>
             </div>
-            <!-- AGEND. -->
+            <!-- FECHADO -->
             <div class="mock-funnel-col">
-              <div class="mock-funnel-head">Agend.</div>
+              <div class="mock-funnel-head"><span class="fh-name">Fechado</span><span class="fh-count">5</span></div>
               <div class="fcard" style="border-color:#a7f3d0">
                 <div class="fcard-top">
-                  <span class="fcard-tag" style="background:#FFE7F6;color:#9C006E">Varejo</span>
+                  <span class="fcard-tags"><span class="fcard-tag tag-ig">DM-Instagram</span><span class="fcard-tag tag-live">Live03</span></span>
                   <span class="fcard-av" style="background:#EC4899">ML</span>
                 </div>
-                <div class="fcard-name">Maria Lima</div>
-                <div class="fcard-price">R$ 1.750</div>
-                <div class="fcard-sep"></div>
+                <div class="fcard-mid"><span class="fcard-name">Maria Lima</span><span class="fcard-price">R$ 1.750</span></div>
                 <div class="fcard-foot">
                   <span class="fcard-foot-av" style="background:#EC4899">ML</span>
-                  <span class="fcard-icons">
+                  <span class="fcard-channels">
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.41 7.5a16 16 0 006.07 6.07l.86-.86a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                    <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.65-.61-2.91-1.26-4.81-4.19-4.96-4.38-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.57-.36.76-.36l.55.01c.18.01.41-.07.64.49.24.57.81 1.99.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47l-.42.49c-.14.14-.28.29-.12.57.16.28.72 1.18 1.54 1.92 1.06.94 1.95 1.24 2.23 1.38.28.14.44.12.6-.07.16-.19.69-.81.88-1.08.18-.28.37-.23.62-.14.25.09 1.6.76 1.87.9.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
                     <svg class="fcard-icon" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                   </span>
-                  <span class="fcard-stat">5m</span>
+                  <span class="fcard-meta">
+                    <span class="fcard-badge"><svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>12/12</span>
+                  </span>
                 </div>
               </div>
             </div>
