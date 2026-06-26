@@ -10,6 +10,35 @@
 <meta property="og:title" content="Agente de IA para Vendas no WhatsApp | Clint">
 <meta property="og:description" content="O agente de IA que assume a conversa de vendas no WhatsApp. Responde em segundos e só passa o bastão pro vendedor quando o lead está maduro pra fechar.">
 <meta property="og:type" content="website">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MG6T9T');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2HY4LSE0P2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2HY4LSE0P2');
+</script>
+<!-- End Google Analytics -->
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '427686280751612');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=427686280751612&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1359,6 +1388,10 @@ h3 { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; lett
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MG6T9T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <!-- Shared SVG gradient defs for Clint AI avatar icon -->
 <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -3008,7 +3041,18 @@ document.addEventListener('DOMContentLoaded', function(){
     })
     .then(function (res) {
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || 'server'); });
-      showSuccess();
+      var highRevenue = [
+        'De R$ 60.000 a R$ 100.000',
+        'De R$ 100.000 a R$ 250.000',
+        'De R$ 250.000 a R$ 500.000',
+        'De R$ 500.000 a R$ 1.000.000',
+        'Acima de R$ 1 Milhão'
+      ];
+      if (highRevenue.indexOf(payload.monthly_revenue) !== -1) {
+        window.location.href = 'https://calendly.com/d/cxpg-tkf-rs7/agenda-nv-consultor-de-operacao?month=2026-06';
+      } else {
+        showSuccess();
+      }
     })
     .catch(function (err) {
       var msg = (err && err.message && err.message !== 'server')
