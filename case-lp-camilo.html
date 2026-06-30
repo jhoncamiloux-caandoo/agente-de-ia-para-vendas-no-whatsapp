@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study — Agente de IA para Vendas no WhatsApp</title>
+  <meta name="description" content="Como transformei uma landing page em um dos principais motores de geração de demanda da operação. 28.967 cliques, 37% de conversão.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #FAFAFA;
+      --bg-dark:     #06060F;
+      --ink:         #0B0B18;
+      --muted:       #6B7280;
+      --dim:         #9CA3AF;
+      --accent:      #8E7CFF;
+      --accent-2:    #FF2D6F;
+      --green:       #25D366;
+      --surface:     #FFFFFF;
+      --border:      rgba(0,0,0,.07);
+      --border-dark: rgba(255,255,255,.07);
+      --r-sm: 8px;
+      --r-md: 12px;
+      --r-lg: 18px;
+      --r-xl: 24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; }
+
+    /* ──── UTILITIES ──── */
+    .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eyebrow-accent { color: var(--accent); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: .08s; }
+    .rd2 { transition-delay: .16s; }
+    .rd3 { transition-delay: .24s; }
+    .rd4 { transition-delay: .32s; }
+    .rd5 { transition-delay: .40s; }
+
+    /* ──── NAV ──── */
+    .case-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 58px;
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(6,6,15,.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-dark);
+      transition: background .4s, border-color .4s;
+    }
+    .case-nav.scrolled-light {
+      background: rgba(250,250,250,.88);
+      border-bottom-color: var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-logo {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: linear-gradient(135deg, var(--accent), #c084fc);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo svg { width: 14px; height: 14px; fill: #fff; }
+    .nav-name {
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.9);
+      letter-spacing: -.2px;
+    }
+    .case-nav.scrolled-light .nav-name { color: var(--ink); }
+    .nav-tag {
+      font-size: 10px; font-weight: 500; color: rgba(255,255,255,.3);
+      margin-left: 2px; letter-spacing: .5px;
+    }
+    .case-nav.scrolled-light .nav-tag { color: var(--muted); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link {
+      font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,.45);
+      transition: color .2s;
+    }
+    .case-nav.scrolled-light .nav-link { color: var(--muted); }
+    .nav-link:hover { color: rgba(255,255,255,.9); }
+    .case-nav.scrolled-light .nav-link:hover { color: var(--ink); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 16px; border-radius: 99px;
+      font-size: 12px; font-weight: 700;
+      background: rgba(142,124,255,.15);
+      border: 1px solid rgba(142,124,255,.3);
+      color: var(--accent);
+      transition: all .2s;
+    }
+    .nav-cta:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ──── HERO ──── */
+    .c-hero {
+      min-height: 100vh;
+      background: var(--bg-dark);
+      display: flex; align-items: center;
+      padding: 100px 40px 80px;
+      position: relative; overflow: hidden;
+    }
+    .c-hero::before {
+      content: '';
+      position: absolute; top: -300px; left: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(142,124,255,.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .c-hero::after {
+      content: '';
+      position: absolute; bottom: -200px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,45,111,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; width: 100%; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px 5px 7px; border-radius: 99px;
+      background: rgba(142,124,255,.1);
+      border: 1px solid rgba(142,124,255,.22);
+      margin-bottom: 28px;
+    }
+    .hero-badge-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent);
+      font-size: 9px; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 800;
+    }
+    .hero-badge-txt {
+      font-size: 11px; font-weight: 600; letter-spacing: .8px;
+      color: rgba(255,255,255,.6);
+    }
+    .hero-h1 {
+      font-size: clamp(34px, 4.2vw, 62px);
+      font-weight: 900; letter-spacing: -2.5px;
+      color: #fff; line-height: 1.07;
+      margin-bottom: 22px;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--accent) 0%, #c084fc 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 16px; font-weight: 400; line-height: 1.72;
+      color: rgba(255,255,255,.47); max-width: 430px;
+      margin-bottom: 44px;
+    }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 99px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.09);
+      font-size: 11.5px; font-weight: 500; color: rgba(255,255,255,.55);
+    }
+    .hero-pill-label {
+      font-size: 9.5px; color: rgba(255,255,255,.25); font-weight: 400;
+    }
+
+    /* MacBook */
+    .hero-right {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .macbook-scene {
+      perspective: 1200px;
+      width: 100%;
+      display: flex; justify-content: center;
+    }
+    .macbook-wrap {
+      transform: rotateX(4deg) rotateY(-12deg) rotateZ(1.5deg);
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 50px 90px rgba(0,0,0,.75));
+      transition: transform .08s linear;
+      width: 520px;
+    }
+    .mac-lid {
+      background: linear-gradient(180deg, #C8C8CC 0%, #B0B0B4 100%);
+      border-radius: 11px 11px 0 0;
+      padding: 12px 12px 0;
+      position: relative;
+    }
+    .mac-lid::before {
+      content: '';
+      position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(0,0,0,.22);
+    }
+    .mac-screen-outer {
+      background: #080810;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .mac-screen-inner {
+      width: 496px;
+      height: 310px;
+      overflow: hidden;
+      position: relative;
+    }
+    .mac-iframe {
+      width: 1440px; height: 900px;
+      transform: scale(0.3444); /* 496/1440 */
+      transform-origin: top left;
+      border: none; display: block;
+      pointer-events: none;
+    }
+    .mac-screen-glare {
+      position: absolute; inset: 0;
+      background: linear-gradient(140deg, rgba(255,255,255,.04) 0%, transparent 55%, rgba(0,0,0,.08) 100%);
+      pointer-events: none;
+    }
+    .mac-hinge {
+      height: 11px;
+      background: linear-gradient(180deg, #A0A0A4 0%, #B8B8BC 100%);
+    }
+    .mac-base {
+      background: linear-gradient(180deg, #C0C0C4 0%, #A8A8AC 100%);
+      height: 16px; border-radius: 0 0 6px 6px;
+      position: relative;
+    }
+    .mac-foot {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 62%; height: 5px;
+      background: linear-gradient(180deg, #888 0%, #999 100%);
+      border-radius: 0 0 5px 5px;
+    }
+
+    /* Scroll hint */
+    .scroll-cue {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.22);
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      animation: fade-pulse 2.5s ease-in-out infinite;
+    }
+    .scroll-cue-arrow {
+      width: 16px; height: 16px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg);
+    }
+    @keyframes fade-pulse { 0%,100% { opacity: .25; } 50% { opacity: .7; } }
+
+    /* ──── IMPRESSION ──── */
+    .c-impression {
+      background: var(--bg-dark);
+      padding: 160px 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.04);
+    }
+    .impression-inner { max-width: 800px; margin: 0 auto; }
+    .impr-q {
+      font-size: clamp(24px, 3.8vw, 52px);
+      font-weight: 800; letter-spacing: -1.5px;
+      line-height: 1.25; color: rgba(255,255,255,.2);
+      margin-bottom: 40px;
+      transition: color .8s ease;
+    }
+    .impr-q.lit { color: rgba(255,255,255,.88); }
+    .impr-q span { color: var(--accent); }
+    .impr-sub {
+      font-size: 16px; color: rgba(255,255,255,.3); line-height: 1.6;
+      opacity: 0; transition: opacity .7s .3s;
+    }
+    .impr-sub.lit { opacity: 1; }
+    .impr-sub strong { color: rgba(255,255,255,.7); }
+
+    /* ──── SECTION BASE ──── */
+    .section-hdr { margin-bottom: 56px; }
+    .section-hdr .eyebrow { margin-bottom: 12px; display: block; }
+    .section-h2 {
+      font-size: clamp(30px, 3.8vw, 50px);
+      font-weight: 900; letter-spacing: -2px; color: var(--ink);
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 500px;
+    }
+
+    /* ──── CONTEXT ──── */
+    .c-context {
+      background: var(--surface); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .context-inner { max-width: 1080px; margin: 0 auto; }
+    .context-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start;
+    }
+    .context-text p {
+      font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 18px;
+    }
+    .context-text p strong { color: var(--ink); font-weight: 700; }
+    .context-text p:last-child { margin-bottom: 0; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px;
+      width: 1px; background: var(--border);
+    }
+    .tl-item { position: relative; padding-bottom: 30px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -26px; top: 3px;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1.5px solid #D1D5DB;
+      background: var(--surface);
+      transition: all .3s;
+    }
+    .tl-dot::after {
+      content: ''; position: absolute; inset: 3px;
+      background: #D1D5DB; border-radius: 50%;
+      transition: background .3s;
+    }
+    .tl-item.tl-active .tl-dot { border-color: var(--accent); }
+    .tl-item.tl-active .tl-dot::after { background: var(--accent); }
+    .tl-label { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ──── PROBLEM ──── */
+    .c-problem {
+      background: var(--bg); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .problem-inner { max-width: 1080px; margin: 0 auto; }
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px; margin-top: 0;
+    }
+    .prob-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 30px 32px;
+      position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .prob-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-2), transparent);
+    }
+    .prob-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,.06); }
+    .prob-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,45,111,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; margin-bottom: 18px;
+    }
+    .prob-title { font-size: 15px; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+    .prob-desc { font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+
+    /* ──── APPROACH ──── */
+    .c-approach {
+      background: var(--surface); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .approach-inner { max-width: 1080px; margin: 0 auto; }
+    .approach-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2px; background: var(--border);
+      border-radius: var(--r-xl); overflow: hidden;
+    }
+    .ap-block {
+      background: var(--surface); padding: 44px;
+      position: relative;
+    }
+    .ap-num {
+      position: absolute; top: 20px; right: 28px;
+      font-size: 64px; font-weight: 900; color: rgba(0,0,0,.04);
+      line-height: 1; letter-spacing: -4px; user-select: none;
+    }
+    .ap-step {
+      font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .ap-title {
+      font-size: 22px; font-weight: 800; color: var(--ink);
+      letter-spacing: -.5px; margin-bottom: 20px;
+    }
+    .ap-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .ap-list li {
+      font-size: 13.5px; color: var(--muted); line-height: 1.55;
+      display: flex; align-items: baseline; gap: 9px;
+    }
+    .ap-list li::before { content: '→'; color: var(--accent); font-size: 11px; flex-shrink: 0; }
+
+    /* ──── WALKTHROUGH ──── */
+    .c-walkthrough {
+      background: var(--bg); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .walkthrough-inner { max-width: 1080px; margin: 0 auto; }
+    .wt-grid {
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 60px; align-items: start;
+    }
+    /* Sticky LP mini mockup */
+    .lp-mini {
+      position: sticky; top: 80px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,.08);
+    }
+    .lp-mini-bar {
+      height: 26px; background: #F3F4F6;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 5px; padding: 0 10px;
+    }
+    .lp-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .ld-r { background: #FF5F57; } .ld-y { background: #FEBC2E; } .ld-g { background: #28C840; }
+    .lp-mini-addr {
+      flex: 1; text-align: center;
+      font-size: 8.5px; color: #aaa; font-family: monospace;
+    }
+    .lp-seg {
+      height: 38px; display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,0,0,.04); color: #bbb;
+      transition: all .35s; cursor: default;
+    }
+    .lp-seg.s-hero { background: #07070F; color: rgba(255,255,255,.35); }
+    .lp-seg.s-hero.wt-active { background: #0E0E1E; color: rgba(255,255,255,.8); box-shadow: inset 0 0 0 2px rgba(142,124,255,.5); }
+    .lp-seg.wt-active { background: rgba(142,124,255,.08); color: var(--accent); box-shadow: inset 0 0 0 2px rgba(142,124,255,.35); }
+
+    /* Annotations */
+    .annotations { display: flex; flex-direction: column; gap: 56px; }
+    .annot {
+      opacity: .28; transform: translateX(-8px);
+      transition: opacity .4s, transform .4s;
+    }
+    .annot.wt-active { opacity: 1; transform: translateX(0); }
+    .annot-tag {
+      display: inline-block;
+      font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); background: rgba(142,124,255,.08);
+      border: 1px solid rgba(142,124,255,.2);
+      border-radius: 4px; padding: 3px 9px; margin-bottom: 12px;
+    }
+    .annot-h { font-size: 21px; font-weight: 800; color: var(--ink); letter-spacing: -.4px; line-height: 1.3; margin-bottom: 9px; }
+    .annot-p { font-size: 14.5px; color: var(--muted); line-height: 1.7; }
+
+    /* ──── CRO ──── */
+    .c-cro {
+      background: var(--surface); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .cro-inner { max-width: 1080px; margin: 0 auto; }
+    .cro-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin-bottom: 40px;
+    }
+    .cro-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 26px 28px;
+    }
+    .cro-card-icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: rgba(142,124,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; margin-bottom: 14px;
+    }
+    .cro-card-title { font-size: 14px; font-weight: 800; color: var(--ink); margin-bottom: 5px; }
+    .cro-card-desc { font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+
+    /* Funnel */
+    .funnel-panel {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 44px;
+    }
+    .funnel-panel-hdr {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 32px;
+    }
+    .funnel-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+    }
+    .funnel-src { font-size: 12px; color: var(--dim); }
+    .funnel-row { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+    .funnel-row:last-child { margin-bottom: 0; }
+    .funnel-name { width: 110px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-align: right; flex-shrink: 0; }
+    .funnel-track { flex: 1; height: 32px; background: rgba(0,0,0,.04); border-radius: 7px; overflow: hidden; }
+    .funnel-fill {
+      height: 100%; border-radius: 7px;
+      display: flex; align-items: center; padding-left: 14px;
+      font-size: 12px; font-weight: 700; color: #fff;
+      width: 0; transition: width 1.3s cubic-bezier(.16,1,.3,1);
+    }
+    .ff-1 { background: linear-gradient(90deg, #8E7CFF, #a78bfa); }
+    .ff-2 { background: linear-gradient(90deg, #7C6EF0, #8E7CFF); }
+    .ff-3 { background: linear-gradient(90deg, #FF2D6F, #f472b6); }
+    .funnel-pct { width: 48px; font-size: 13px; font-weight: 800; color: var(--ink); flex-shrink: 0; }
+
+    /* ──── RESULTS ──── */
+    .c-results {
+      background: var(--bg-dark); padding: 130px 40px;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    .results-inner { max-width: 1080px; margin: 0 auto; }
+    .results-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px; display: block;
+    }
+    .results-h2 {
+      font-size: clamp(36px, 5vw, 64px); font-weight: 900; letter-spacing: -3px;
+      color: #fff; line-height: 1.06; margin-bottom: 72px;
+    }
+    .results-h2 span { color: rgba(255,255,255,.2); }
+    .metrics-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: rgba(255,255,255,.05);
+      border-radius: var(--r-xl); overflow: hidden; margin-bottom: 2px;
+    }
+    .metric {
+      background: rgba(255,255,255,.025); padding: 40px;
+      transition: background .3s;
+    }
+    .metric:hover { background: rgba(255,255,255,.05); }
+    .metric-lbl {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.25); margin-bottom: 10px;
+    }
+    .metric-val {
+      font-size: clamp(34px, 3.5vw, 50px); font-weight: 900; letter-spacing: -3px;
+      color: #fff; line-height: 1; margin-bottom: 8px;
+    }
+    .metric-val .cnt { display: inline; }
+    .metric-ctx { font-size: 12.5px; color: rgba(255,255,255,.3); line-height: 1.45; }
+    .metric-ctx strong { color: rgba(255,255,255,.6); }
+    .metric-acc { color: var(--accent); }
+
+    /* Big standalone stat */
+    .big-stat {
+      border: 1px solid rgba(142,124,255,.18);
+      background: linear-gradient(135deg, rgba(142,124,255,.08) 0%, rgba(255,45,111,.05) 100%);
+      border-radius: var(--r-xl); padding: 64px 40px;
+      text-align: center; margin-top: 40px;
+    }
+    .big-stat-num {
+      font-size: clamp(64px, 9vw, 110px); font-weight: 900; letter-spacing: -6px;
+      background: linear-gradient(130deg, var(--accent) 0%, #c084fc 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      line-height: 1;
+    }
+    .big-stat-lbl {
+      font-size: 19px; font-weight: 500; color: rgba(255,255,255,.4);
+      margin-top: 16px; line-height: 1.55;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .big-stat-lbl strong { color: rgba(255,255,255,.85); font-weight: 700; }
+
+    /* ──── LEARNINGS ──── */
+    .c-learnings {
+      background: var(--surface); padding: 110px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .learnings-inner { max-width: 1080px; margin: 0 auto; }
+    .learn-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+    }
+    .learn-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px 36px;
+      position: relative; overflow: hidden;
+    }
+    .learn-card::before {
+      content: '"'; font-size: 96px; font-weight: 900; line-height: 1;
+      color: rgba(142,124,255,.07);
+      position: absolute; top: 4px; left: 18px;
+      font-family: Georgia, serif;
+    }
+    .learn-card-body {
+      font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.65;
+      position: relative; z-index: 1; padding-top: 20px;
+    }
+
+    /* ──── STACK ──── */
+    .c-stack {
+      background: var(--bg); padding: 90px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stack-inner { max-width: 1080px; margin: 0 auto; }
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+    .stack-pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 9px 18px; border-radius: 99px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 12.5px; font-weight: 600; color: var(--ink);
+      transition: all .2s;
+    }
+    .stack-pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(142,124,255,.12); }
+    .stack-pill-ico { font-size: 15px; }
+
+    /* ──── CONCLUSION ──── */
+    .c-conclusion {
+      background: var(--bg-dark);
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 100px 40px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,.05);
+      position: relative; overflow: hidden;
+    }
+    .c-conclusion::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse, rgba(142,124,255,.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .conclusion-inner { position: relative; z-index: 1; max-width: 800px; }
+    .conclusion-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(255,255,255,.25); margin-bottom: 20px; display: block;
+    }
+    .conclusion-h {
+      font-size: clamp(26px, 4vw, 54px); font-weight: 900; letter-spacing: -2px;
+      color: #fff; line-height: 1.22; margin-bottom: 22px;
+    }
+    .conclusion-h em { font-style: normal; color: var(--accent); }
+    .conclusion-sub {
+      font-size: 17px; color: rgba(255,255,255,.38); line-height: 1.65;
+      max-width: 560px; margin: 0 auto 52px;
+    }
+    .conclusion-sub strong { color: rgba(255,255,255,.65); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 15px 36px; border-radius: 99px;
+      background: var(--accent); color: #fff;
+      font-size: 14px; font-weight: 800;
+      box-shadow: 0 8px 28px rgba(142,124,255,.38);
+      transition: all .22s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(142,124,255,.5); background: #7b6af0; }
+    .btn-arrow { font-size: 16px; transition: transform .2s; }
+    .btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+    /* Case footer */
+    .case-footer {
+      background: var(--bg-dark); padding: 26px 40px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.2); }
+    .footer-lp-link {
+      font-size: 12px; color: rgba(255,255,255,.3); transition: color .2s;
+    }
+    .footer-lp-link:hover { color: var(--accent); }
+
+    /* ──── RESPONSIVE ──── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .context-grid { grid-template-columns: 1fr; gap: 48px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .wt-grid { grid-template-columns: 1fr; }
+      .lp-mini { display: none; }
+      .cro-cards { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .case-nav { padding: 0 20px; }
+      .c-hero,.c-impression,.c-context,.c-problem,.c-approach,
+      .c-walkthrough,.c-cro,.c-results,.c-learnings,.c-stack,.c-conclusion {
+        padding-left: 20px; padding-right: 20px;
+      }
+      .case-footer { padding-left: 20px; padding-right: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .macbook-wrap { transition: none !important; }
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="case-nav" id="caseNav">
+  <a href="/" class="nav-brand">
+    <div class="nav-logo">
+      <svg viewBox="0 0 14 14"><path d="M7 1L13 4V10L7 13L1 10V4L7 1Z"/></svg>
+    </div>
+    <span class="nav-name">Jhon Camilo</span>
+    <span class="nav-tag">/ Case</span>
+  </a>
+  <div class="nav-right">
+    <a href="#c-results" class="nav-link">Resultados</a>
+    <a href="#c-approach" class="nav-link">Processo</a>
+    <a href="/" class="nav-cta">Ver LP <span>↗</span></a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 1. HERO                                    -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge reveal">
+        <div class="hero-badge-dot">✦</div>
+        <span class="hero-badge-txt">Case Study · 2025</span>
+      </div>
+      <h1 class="hero-h1 reveal rd1">
+        Agente de IA<br>para Vendas<br>no <em>WhatsApp</em>
+      </h1>
+      <p class="hero-sub reveal rd2">
+        Uma landing page construída para converter — não apenas para existir. Da estratégia ao pixel, da hipótese ao resultado.
+      </p>
+      <div class="hero-pills reveal rd3">
+        <div class="hero-pill">
+          <span class="hero-pill-label">Função</span>
+          Designer &amp; Estrategista
+        </div>
+        <div class="hero-pill">
+          <span class="hero-pill-label">Ano</span>
+          2025
+        </div>
+        <div class="hero-pill">
+          <span class="hero-pill-label">Empresa</span>
+          Clint Digital
+        </div>
+        <div class="hero-pill">
+          <span class="hero-pill-label">Canal</span>
+          Meta Ads
+        </div>
+      </div>
+    </div>
+    <div class="hero-right reveal rd2">
+      <div class="macbook-scene">
+        <div class="macbook-wrap" id="macbookWrap">
+          <div class="mac-lid">
+            <div class="mac-screen-outer">
+              <div class="mac-screen-inner">
+                <iframe class="mac-iframe" src="/" title="Landing Page — Agente de IA" scrolling="no" loading="lazy" tabindex="-1"></iframe>
+                <div class="mac-screen-glare"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mac-hinge"></div>
+          <div class="mac-base"><div class="mac-foot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-cue-arrow"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 2. FIRST IMPRESSION                        -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-impression">
+  <div class="impression-inner">
+    <p class="impr-q" id="imprQ1">
+      E se cada clique numa campanha fosse<br>um lead real chegando no WhatsApp?
+    </p>
+    <p class="impr-q" id="imprQ2">
+      Esse projeto provou que sim — com os dados<br>certos e o design <span>correto</span>, é possível.
+    </p>
+    <p class="impr-sub" id="imprSub">
+      <strong>28.967 cliques.</strong> 10.722 conversões direto para o WhatsApp. Custo por clique de <strong>R$0,47</strong>. Tudo com uma única landing page.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 3. CONTEXT                                 -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-context">
+  <div class="context-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Contexto</span>
+      <h2 class="section-h2">O desafio era simples —<br>e ao mesmo tempo não era.</h2>
+      <p class="section-sub">A Clint Digital precisava de uma LP que vendesse o produto de IA para vendedores no WhatsApp. A concorrência era alta, o CPM subindo.</p>
+    </div>
+    <div class="context-grid">
+      <div class="context-text reveal rd1">
+        <p><strong>O produto era técnico e disruptivo:</strong> um agente de inteligência artificial que qualifica leads, responde no WhatsApp 24h e aumenta conversão sem aumentar equipe.</p>
+        <p>O problema? Ninguém sabia comunicar isso de forma humana. Existia um gap entre o que o produto fazia e o que o mercado entendia.</p>
+        <p>Meu papel foi construir uma landing page que <strong>traduzisse complexidade em desejo</strong>. Uma página que qualquer vendedor entendesse em 30 segundos e quisesse testar.</p>
+        <p>O resultado foi uma LP que se tornou o principal ponto de entrada de toda a operação de aquisição.</p>
+      </div>
+      <div class="reveal rd2">
+        <div class="timeline">
+          <div class="tl-item tl-active">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-label">Briefing &amp; Contexto</div>
+              <div class="tl-desc">Entendimento profundo do produto, ICP, proposta de valor e diferenciais competitivos.</div>
+            </div>
+          </div>
+          <div class="tl-item tl-active">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-label">Estratégia de Conversão</div>
+              <div class="tl-desc">Definição do funil, micro-momentos de decisão, arquitetura da mensagem e hierarquia visual.</div>
+            </div>
+          </div>
+          <div class="tl-item tl-active">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-label">Design &amp; Build</div>
+              <div class="tl-desc">Execução pixel-perfect em HTML/CSS puro, animações, seções de prova social e CTA direto para WhatsApp.</div>
+            </div>
+          </div>
+          <div class="tl-item tl-active">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-label">Análise e Otimização</div>
+              <div class="tl-desc">Monitoramento com Google Analytics e Microsoft Clarity, ajustes com base em dados reais de comportamento.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div>
+              <div class="tl-label">Resultados</div>
+              <div class="tl-desc">37% de conversão, 79% dos cliques da operação, CPL de R$1,27 no botão de WhatsApp.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 4. PROBLEM                                 -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-problem">
+  <div class="problem-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Diagnóstico</span>
+      <h2 class="section-h2">O que estava errado<br>antes de começar.</h2>
+      <p class="section-sub">A LP anterior existia. Mas não convertia.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="prob-card reveal rd1">
+        <div class="prob-icon">🗣️</div>
+        <div class="prob-title">Linguagem técnica demais</div>
+        <div class="prob-desc">O texto falava de "automação com IA" e "integração de APIs". O vendedor quer saber se vai vender mais. A linguagem criava fricção.</div>
+      </div>
+      <div class="prob-card reveal rd2">
+        <div class="prob-icon">📸</div>
+        <div class="prob-title">Zero prova social visível</div>
+        <div class="prob-desc">Nenhum rosto. Nenhum número. Nenhum depoimento real. O visitante chegava sem razão para confiar no produto.</div>
+      </div>
+      <div class="prob-card reveal rd3">
+        <div class="prob-icon">📲</div>
+        <div class="prob-title">CTA genérico e sem urgência</div>
+        <div class="prob-desc">"Saiba mais" não converte. O botão precisa dizer o que acontece quando você clica. Clareza primeiro, criatividade depois.</div>
+      </div>
+      <div class="prob-card reveal rd4">
+        <div class="prob-icon">📉</div>
+        <div class="prob-title">Estrutura sem lógica de decisão</div>
+        <div class="prob-desc">As seções não guiavam o visitante numa jornada. Era uma coleção de blocos soltos sem progressão emocional ou lógica.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 5. APPROACH                               -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-approach" id="c-approach">
+  <div class="approach-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Processo</span>
+      <h2 class="section-h2">Como eu construí<br>do zero ao resultado.</h2>
+    </div>
+    <div class="approach-grid">
+      <div class="ap-block reveal rd1">
+        <div class="ap-num">01</div>
+        <div class="ap-step">Discovery</div>
+        <h3 class="ap-title">Entendimento antes do design</h3>
+        <ul class="ap-list">
+          <li>Entrevistas com a equipe de vendas sobre objeções reais</li>
+          <li>Análise das campanhas de Meta Ads e mensagens que mais convertiam</li>
+          <li>Mapeamento de concorrentes e posicionamento diferenciado</li>
+          <li>Definição do ICP: vendedores B2B com operação no WhatsApp</li>
+        </ul>
+      </div>
+      <div class="ap-block reveal rd2">
+        <div class="ap-num">02</div>
+        <div class="ap-step">Estratégia</div>
+        <h3 class="ap-title">Arquitetura de conversão</h3>
+        <ul class="ap-list">
+          <li>Hierarquia emocional: dor → solução → prova → ação</li>
+          <li>Ancoragem com números reais na hero section</li>
+          <li>Prova social com nomes e contextos reais</li>
+          <li>CTAs diretos para WhatsApp em múltiplos pontos</li>
+        </ul>
+      </div>
+      <div class="ap-block reveal rd3">
+        <div class="ap-num">03</div>
+        <div class="ap-step">Design &amp; Build</div>
+        <h3 class="ap-title">Execução sem compromisso</h3>
+        <ul class="ap-list">
+          <li>HTML/CSS puro — zero dependência de CMS</li>
+          <li>Animações em CSS com Intersection Observer</li>
+          <li>Mockup de funil Kanban para visualizar o agente em ação</li>
+          <li>Parceiro Oficial Meta como elemento de autoridade com imagem flutuante</li>
+        </ul>
+      </div>
+      <div class="ap-block reveal rd4">
+        <div class="ap-num">04</div>
+        <div class="ap-step">Otimização</div>
+        <h3 class="ap-title">Dados guiam o próximo passo</h3>
+        <ul class="ap-list">
+          <li>Heatmaps com Microsoft Clarity revelando pontos de abandono</li>
+          <li>Google Analytics para mapear origem e profundidade do scroll</li>
+          <li>Iterações no copy dos CTAs com base em taxa de clique</li>
+          <li>Ajustes na seção de provas sociais após análise de sessões</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 6. LP WALKTHROUGH                          -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-walkthrough">
+  <div class="walkthrough-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Página Seção a Seção</span>
+      <h2 class="section-h2">Cada bloco tem<br>uma razão de existir.</h2>
+    </div>
+    <div class="wt-grid">
+      <!-- Mini LP mockup -->
+      <div class="lp-mini" aria-hidden="true">
+        <div class="lp-mini-bar">
+          <div class="lp-dot ld-r"></div>
+          <div class="lp-dot ld-y"></div>
+          <div class="lp-dot ld-g"></div>
+          <div class="lp-mini-addr">clint.digital/agente-ia</div>
+        </div>
+        <div class="lp-seg s-hero wt-seg" data-seg="hero">Hero</div>
+        <div class="lp-seg wt-seg" data-seg="beneficios">Benefícios</div>
+        <div class="lp-seg wt-seg" data-seg="kanban">Kanban / Demo</div>
+        <div class="lp-seg wt-seg" data-seg="proof">Prova Social</div>
+        <div class="lp-seg wt-seg" data-seg="meta">Meta Partner</div>
+        <div class="lp-seg wt-seg" data-seg="cta">CTA Final</div>
+      </div>
+      <!-- Annotations -->
+      <div class="annotations">
+        <div class="annot wt-active" data-annot="hero">
+          <div class="annot-tag">Hero Section</div>
+          <h3 class="annot-h">3 segundos para prender a atenção</h3>
+          <p class="annot-p">O título "Seu Agente de IA para Vendas no WhatsApp" responde de imediato a pergunta do visitante: "isso é pra mim?". A hero carrega números reais e um CTA direto para WhatsApp logo acima da dobra. Nenhum visitante precisa scrollar para saber o que fazer.</p>
+        </div>
+        <div class="annot" data-annot="beneficios">
+          <div class="annot-tag">Benefícios</div>
+          <h3 class="annot-h">Dor → solução em menos de 10 palavras</h3>
+          <p class="annot-p">Cada card de benefício começa com uma dor reconhecível ("Seu time perde leads por demora?") e entrega a solução de forma direta. Ícones funcionais, não decorativos. Copy orientado ao resultado, não à feature.</p>
+        </div>
+        <div class="annot" data-annot="kanban">
+          <div class="annot-tag">Demo Interativa</div>
+          <h3 class="annot-h">Mostrar, não contar</h3>
+          <p class="annot-p">O mockup de funil Kanban animado mostra o agente qualificando leads em tempo real. Um card de "João Silva" entra em Novos Leads e migra para Qualificados. O visitante vê o produto funcionando antes de comprar. Esse elemento aumenta tempo na página e reduz objeções.</p>
+        </div>
+        <div class="annot" data-annot="proof">
+          <div class="annot-tag">Prova Social</div>
+          <h3 class="annot-h">Rostos reais vencem qualquer argumento</h3>
+          <p class="annot-p">Depoimentos com nome completo, cargo e empresa específica. Fotos reais. Resultados numéricos específicos. A especificidade é o que diferencia prova social de marketing genérico — qualquer pessoa pode inventar "minha equipe ficou incrível", mas "Felipe Silverato da AutoVenda fechou 3 contratos em 2 semanas" é verificável.</p>
+        </div>
+        <div class="annot" data-annot="meta">
+          <div class="annot-tag">Autoridade</div>
+          <h3 class="annot-h">Parceiro Oficial da Meta como escudo de objeção</h3>
+          <p class="annot-p">O badge de Parceiro Oficial Meta resolve uma objeção antes de ser levantada: "Mas isso é seguro? É aprovado pelo WhatsApp?" A imagem da conversa Meta Partner flutuante posiciona a Clint na categoria de empresas sérias, não de revendedores.</p>
+        </div>
+        <div class="annot" data-annot="cta">
+          <div class="annot-tag">CTA Final</div>
+          <h3 class="annot-h">O último empurrão — sem escada, só ponte</h3>
+          <p class="annot-p">A seção CTA não pede que o visitante "se comprometa". Ela oferece uma conversa. "Agendar uma conversa" remove a fricção de uma compra e transforma o clique em uma ação de baixo risco percebido. O Typebot embarcado qualifica ainda mais antes do contato humano.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 7. CRO                                     -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-cro">
+  <div class="cro-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Otimização</span>
+      <h2 class="section-h2">Dados de comportamento<br>guiam cada iteração.</h2>
+      <p class="section-sub">Nenhuma alteração sem evidência. Clarity e Analytics revelaram onde o dinheiro estava sendo desperdiçado.</p>
+    </div>
+    <div class="cro-cards">
+      <div class="cro-card reveal rd1">
+        <div class="cro-card-icon">🔥</div>
+        <div class="cro-card-title">Heatmaps de Atenção</div>
+        <div class="cro-card-desc">Microsoft Clarity mostrou que 73% do tempo acima da dobra ia para o bloco de benefícios. O CTA da hero foi deslocado para ficar nessa zona quente.</div>
+      </div>
+      <div class="cro-card reveal rd2">
+        <div class="cro-card-icon">📊</div>
+        <div class="cro-card-title">Mapa de Scroll</div>
+        <div class="cro-card-desc">Apenas 40% dos visitantes chegava à seção de depoimentos. A solução: inserir prova social parcial mais acima, antes do abandono médio.</div>
+      </div>
+      <div class="cro-card reveal rd3">
+        <div class="cro-card-icon">🖱️</div>
+        <div class="cro-card-title">Click Rate por CTA</div>
+        <div class="cro-card-desc">O botão "Falar com especialista" performou 2.3x melhor que "Saber mais". Linguagem de ação concreta supera linguagem de exploração.</div>
+      </div>
+    </div>
+    <div class="funnel-panel reveal">
+      <div class="funnel-panel-hdr">
+        <div class="funnel-label">Funil de Conversão</div>
+        <div class="funnel-src">Google Analytics · Meta Ads · Jan–Jun 2025</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-name">Impressões</div>
+        <div class="funnel-track"><div class="funnel-fill ff-1" data-w="100" data-label="61.648">61.648</div></div>
+        <div class="funnel-pct">100%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-name">Cliques</div>
+        <div class="funnel-track"><div class="funnel-fill ff-2" data-w="47" data-label="28.967">28.967</div></div>
+        <div class="funnel-pct">47%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-name">WhatsApp</div>
+        <div class="funnel-track"><div class="funnel-fill ff-3" data-w="37" data-label="10.722">10.722</div></div>
+        <div class="funnel-pct">37%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 8. RESULTS                                 -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-results" id="c-results">
+  <div class="results-inner">
+    <span class="results-eyebrow reveal">Resultados</span>
+    <h2 class="results-h2 reveal rd1">
+      Os números<br><span>falam por si.</span>
+    </h2>
+    <div class="metrics-grid" id="metricsGrid">
+      <div class="metric reveal rd1">
+        <div class="metric-lbl">Cliques na LP</div>
+        <div class="metric-val"><span class="cnt" data-from="0" data-to="28967">0</span></div>
+        <div class="metric-ctx">Gerados por campanhas de <strong>Meta Ads</strong></div>
+      </div>
+      <div class="metric reveal rd2">
+        <div class="metric-lbl">Botão WhatsApp</div>
+        <div class="metric-val"><span class="cnt" data-from="0" data-to="10722">0</span></div>
+        <div class="metric-ctx">Leads direto para <strong>o vendedor</strong></div>
+      </div>
+      <div class="metric reveal rd3">
+        <div class="metric-lbl">Taxa de Conversão</div>
+        <div class="metric-val"><span class="cnt" data-from="0" data-to="37" data-suffix="%">0%</span></div>
+        <div class="metric-ctx">De <strong>clique → WhatsApp</strong></div>
+      </div>
+      <div class="metric reveal rd4">
+        <div class="metric-lbl">Custo por Clique</div>
+        <div class="metric-val"><span>R$</span><span class="cnt" data-from="0" data-to="047" data-decimal="true">0,00</span></div>
+        <div class="metric-ctx">CPC médio nas campanhas <strong class="metric-acc">↓ abaixo do benchmark</strong></div>
+      </div>
+      <div class="metric reveal rd5">
+        <div class="metric-lbl">Custo / WhatsApp</div>
+        <div class="metric-val"><span>R$</span><span class="cnt" data-from="0" data-to="127" data-decimal="true">0,00</span></div>
+        <div class="metric-ctx">Custo por lead chegando <strong>no WhatsApp</strong></div>
+      </div>
+      <div class="metric reveal rd5">
+        <div class="metric-lbl">Participação</div>
+        <div class="metric-val"><span class="cnt" data-from="0" data-to="79" data-suffix="%">0%</span></div>
+        <div class="metric-ctx"><strong>De todos os cliques</strong> da operação passaram por essa LP</div>
+      </div>
+    </div>
+    <div class="big-stat reveal">
+      <div class="big-stat-num"><span class="cnt" data-from="0" data-to="79" data-suffix="%">0%</span></div>
+      <p class="big-stat-lbl">dos cliques de toda a operação passaram por esta landing page. <strong>Uma página se tornou o coração de toda a geração de demanda.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 9. LEARNINGS                               -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-learnings">
+  <div class="learnings-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Aprendizados</span>
+      <h2 class="section-h2">O que eu levaria<br>para o próximo projeto.</h2>
+    </div>
+    <div class="learn-grid">
+      <div class="learn-card reveal rd1">
+        <p class="learn-card-body">Prova social específica converte mais. Não "nosso cliente adorou" — mas "Maria da AgênciaX fechou 4 contratos em 3 semanas". Especificidade cria credibilidade automática.</p>
+      </div>
+      <div class="learn-card reveal rd2">
+        <p class="learn-card-body">CTA antes da dobra não é arrogância — é respeito pelo tempo do visitante. Quem quer, não precisa scrollar. Quem não quer, precisa de mais contexto primeiro.</p>
+      </div>
+      <div class="learn-card reveal rd3">
+        <p class="learn-card-body">Demonstração visual do produto vale mais que qualquer copy. O kanban animado mostrou o agente em ação. Nenhum parágrafo descrevendo "automação inteligente" teria o mesmo efeito.</p>
+      </div>
+      <div class="learn-card reveal rd4">
+        <p class="learn-card-body">Heatmap não mente. Eu achava que a seção de preços era a mais clicada. O Clarity provou que eram os depoimentos. Dados > intuição, sempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 10. STACK                                  -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-stack">
+  <div class="stack-inner">
+    <div class="section-hdr reveal">
+      <span class="eyebrow eyebrow-accent">Stack</span>
+      <h2 class="section-h2">Ferramentas usadas.</h2>
+    </div>
+    <div class="stack-pills">
+      <div class="stack-pill reveal rd1"><span class="stack-pill-ico">🎨</span> Figma</div>
+      <div class="stack-pill reveal rd1"><span class="stack-pill-ico">💻</span> HTML / CSS</div>
+      <div class="stack-pill reveal rd2"><span class="stack-pill-ico">📊</span> Google Analytics</div>
+      <div class="stack-pill reveal rd2"><span class="stack-pill-ico">🔥</span> Microsoft Clarity</div>
+      <div class="stack-pill reveal rd3"><span class="stack-pill-ico">🤖</span> ChatGPT</div>
+      <div class="stack-pill reveal rd3"><span class="stack-pill-ico">✦</span> Claude AI</div>
+      <div class="stack-pill reveal rd4"><span class="stack-pill-ico">💜</span> Lovable</div>
+      <div class="stack-pill reveal rd4"><span class="stack-pill-ico">🤝</span> Typebot</div>
+      <div class="stack-pill reveal rd5"><span class="stack-pill-ico">▲</span> Vercel</div>
+      <div class="stack-pill reveal rd5"><span class="stack-pill-ico">📱</span> Meta Ads</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- 11. CONCLUSION                             -->
+<!-- ══════════════════════════════════════════ -->
+<section class="c-conclusion">
+  <div class="conclusion-inner">
+    <span class="conclusion-eyebrow reveal">Conclusão</span>
+    <h2 class="conclusion-h reveal rd1">
+      Uma boa landing page não é design.<br>
+      É <em>estratégia com forma.</em>
+    </h2>
+    <p class="conclusion-sub reveal rd2">
+      Quando entendemos o que o visitante precisa ouvir — na ordem certa, com as provas certas, com o CTA na hora certa — o clique vira conversa. A conversa vira cliente. <strong>E o cliente vira dado para o próximo ciclo.</strong>
+    </p>
+    <a href="/" class="btn-primary reveal rd3">
+      Ver a Landing Page
+      <span class="btn-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="case-footer">
+  <p class="footer-copy">© 2025 Jhon Camilo · Clint Digital</p>
+  <a href="/" class="footer-lp-link">Ver LP completa ↗</a>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── Reveal on scroll ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => ro.observe(el));
+
+  /* ── Nav background ── */
+  const nav = document.getElementById('caseNav');
+  const heroEl = document.querySelector('.c-hero');
+  const heroH = heroEl ? heroEl.offsetHeight : 600;
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled-light', window.scrollY > heroH * 0.7);
+  }, { passive: true });
+
+  /* ── MacBook parallax ── */
+  const mbWrap = document.getElementById('macbookWrap');
+  if(mbWrap) {
+    window.addEventListener('scroll', () => {
+      const t = Math.min(window.scrollY / heroH, 1);
+      const rx = 4 - t * 8;
+      const ry = -12 + t * 14;
+      const rz = 1.5 - t * 2;
+      mbWrap.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
+    }, { passive: true });
+  }
+
+  /* ── Impression section fade-in ── */
+  const q1 = document.getElementById('imprQ1');
+  const q2 = document.getElementById('imprQ2');
+  const sub = document.getElementById('imprSub');
+  const io2 = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        setTimeout(() => q1 && q1.classList.add('lit'), 200);
+        setTimeout(() => q2 && q2.classList.add('lit'), 700);
+        setTimeout(() => sub && sub.classList.add('lit'), 1200);
+        io2.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  if(q1) io2.observe(q1.closest('.c-impression'));
+
+  /* ── Walkthrough annotation tracking ── */
+  const annotEls = document.querySelectorAll('.annot');
+  const segEls = document.querySelectorAll('.lp-seg');
+  const ioWT = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        const key = e.target.dataset.annot;
+        annotEls.forEach(a => a.classList.toggle('wt-active', a.dataset.annot === key));
+        segEls.forEach(s => s.classList.toggle('wt-active', s.dataset.seg === key));
+      }
+    });
+  }, { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' });
+  annotEls.forEach(a => ioWT.observe(a));
+
+  /* ── Funnel bars animation ── */
+  const fills = document.querySelectorAll('.funnel-fill');
+  const ioF = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        fills.forEach(f => { f.style.width = f.dataset.w + '%'; });
+        ioF.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  const funPanel = document.querySelector('.funnel-panel');
+  if(funPanel) ioF.observe(funPanel);
+
+  /* ── Counter animation ── */
+  function animCounter(el) {
+    const to = parseInt(el.dataset.to.replace('.',''), 10);
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = el.dataset.decimal === 'true';
+    const dur = 1800;
+    const start = performance.now();
+    function fmt(n) {
+      if(isDecimal) {
+        const v = n / 100;
+        return v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      return n.toLocaleString('pt-BR') + suffix;
+    }
+    function step(now) {
+      const elapsed = now - start;
+      const p = Math.min(elapsed / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(to * eased));
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const cnts = document.querySelectorAll('.cnt[data-to]');
+  let counted = false;
+  const ioR = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !counted) {
+        counted = true;
+        cnts.forEach(c => animCounter(c));
+        ioR.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  const resultsEl = document.getElementById('c-results');
+  if(resultsEl) ioR.observe(resultsEl);
+
+})();
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/agente-de-ia-para-vendas-no-whatsapp.html" }
+    { "source": "/", "destination": "/agente-de-ia-para-vendas-no-whatsapp.html" },
+    { "source": "/case-lp-camilo", "destination": "/case-lp-camilo.html" }
   ]
 }
